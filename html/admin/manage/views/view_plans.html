@@ -1,0 +1,80 @@
+<div ng-controller="users_managementCtrl">
+
+	<ul class="breadcrumb">
+        <li>
+            <p>YOU ARE HERE</p>
+        </li> 
+        <li><a href="#" class="active">View Plans</a>
+        </li>
+    </ul>
+	<div class="page-title">	
+		<i class="icon-custom-left"></i>
+        <h3>Plans - <span class="semi-bold">Management</span></h3>	
+    </div>
+    <div class="row">
+    	
+	    <div class="col-md-12">
+	        <div class="grid simple ">
+
+	            <div class="grid-body no-border">
+	            	<br/>
+	            	<div ng-show="dump.message" class="alert {{dump.type}}">
+				        <button class="close" data-dismiss="alert"></button>
+				        {{dump.message}}
+				      </div>
+	            	<h3>Manage  <span class="semi-bold">Plans</span></h3>
+	                  
+	                    <table class="table no-more-tables">
+	                        <thead>
+	                            <tr>
+	                                <th style="width:15%">Name</th>
+	                                <th style="width:10%">Price</th>
+	                                <th style="width:15%">Cycle</th>
+	                                <th style="width:15%">Has Trial</th>
+	                                <th style="width:15%">Edit</th>
+	                            </tr>
+	                        </thead>
+	                        <tbody ng-repeat="plan in plans" style="border:none">
+	                        	
+	                        	<tr>
+		                            <td class="v-align-middle"><a href="#/users_management/edit/{{plan._id}}">{{plan.name}}</td>
+		                            <td class="v-align-middle">{{plan.price}}</a></td>
+		                            <td class="v-align-middle">Every {{plan.interval_count}} {{plan.interval}}</td>
+		                            <td class="v-align-middle">{{plan._kmd.ect|date:'mediumDate'}}</td>
+		                            
+		                            <td class="v-align-middle"><span class="btn " ng-class="{'btn-default':plan.status=='pending','btn-primary':plan.status=='approved','btn-danger':plan.status=='canceled'}">{{plan.status}}</span></td>
+		                            <td class="v-align-middle">
+		                            	<span class="btn-group">
+		                            	<a ng-href="#/users_management/edit/{{plan._id}}" class="btn btn-info"><i class="fa fa-edit"></i></a>
+		                            	<span ng-click="confirm_delete=true" class="btn btn-danger"><i class="fa fa-times"></i></span>
+		                            	</span>
+		                            </td>
+		                            <td> <span ng-click="confirm_reset=true"  class="btn btn-success">Reset</span> </td>
+		                            
+	                            </tr>
+	                            <tr ng-show="confirm_delete">
+	                            	<td colspan="7">
+	                            		<div class="alert alert-error">
+						                  <button class="close" ng-click="confirm_delete=false;"></button>
+						                  Please confirm delete process.
+						                  <button ng-click="delete($index);confirm_delete=false;" class="btn btn-danger btn-sm btn-small pull-right" type="button">Confirm Delete</button>
+						                </div>
+	                            	</td>
+	                            </tr>
+	                            <tr ng-show="confirm_reset">
+	                            	<td colspan="7">
+	                            		<div class="alert ">
+						                  <button class="close" ng-click="confirm_reset=false;" ></button>
+						                  Please confirm reset process.
+						                  <button ng-click="reset($index);confirm_reset=false;" class="btn btn-danger btn-sm btn-small pull-right" type="button">Confirm Reset Password</button>
+						                </div>
+	                            	</td>
+	                            </tr>
+	                            
+	                        </tbody>
+	                    </table>
+	            </div>
+	        </div>
+	    </div>
+	</div>
+</div>

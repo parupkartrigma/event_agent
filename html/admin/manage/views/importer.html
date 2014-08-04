@@ -1,0 +1,64 @@
+<div ng-controller="billingCtrl" ng-show="current_user.is_admin">
+
+	<ul class="breadcrumb">
+        <li>
+            <p>YOU ARE HERE</p>
+        </li> 
+        <li><a href="#" class="active">Importer</a>
+        </li>
+    </ul>
+	<div class="page-title">	
+		<a href="" ng-click="goBack();"><i class="icon-custom-left"></i></a>
+        <h3>Users - <span class="semi-bold">Importer</span></h3>	
+    </div>
+    <div class="row">
+    	
+	    <div class="col-md-12">
+	        <div class="grid simple ">
+
+	            <div class="grid-body no-border">
+	            	<br/>
+	            	<div ng-show="dump.message" class="alert {{dump.type}}">
+				        <button class="close" ng-click="dump={}"></button>
+				        {{dump.message}}
+				      </div>
+	            	<h3>Drag CSV file here to start importing</h3>
+	                  <div ng-hide="csv_uploaded" dropzone-hover-class="dropzonehover" class="dropzone" file-dropzone="[text/csv]" upload="false"  complete="uploaded($data,$file);" read="readAsText" start="start($file);" file="page.brochure" file-name="imageFileName" data-max-file-size="10">
+ 							Or select brochure to upload
+ 							<div class="file_input_holder">
+									<input type="file" class="file_input"/>
+							</div>
+						</div>
+						<div class="loading_text" ng-show="csv_uploaded&&!import_done&&!import_done_errors">
+								<i class="fa fa-spinner fa-spin"></i> Importing {{data.length}} items...
+						</div>
+						<div ng-show="import_done" class="alert alert-success">
+							<b>{{data.length}} Items</b> were imported successfully.
+							<a href="" ng-click="link();" class="btn btn-primary"><i ng-show="loading" class="fa fa-spinner fa-spin"></i>   Link Pages & Users</a>
+						</div>
+						<div ng-show="import_done_errors" class="alert">
+							<b>{{data.length}} Items</b> were imported successfully.
+							<a href="" ng-click="link();" class="btn btn-primary"><i ng-show="loading" class="fa fa-spinner fa-spin"></i>   Link Pages & Users</a>
+						</div>
+
+	                    
+	            </div>
+	        </div>
+	    </div>
+	</div>
+</div>
+<div ng-controller="billingCtrl" ng-show="!current_user.is_admin">
+	    <div class="row">
+		    <div class="col-md-12">
+		        <div class="grid simple ">
+		            <div class="grid-body no-border">
+		            	<br/>
+		            	<br/>
+		            	<!-- <div class="alert alert-error">
+							You don't have permission to view this page {{current_user.username}}
+						</div> -->
+		        	</div>
+		    	</div>
+			</div>
+		</div>
+</div>

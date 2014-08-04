@@ -1,0 +1,50 @@
+<div ng-controller="testimonials">
+
+	<ul class="breadcrumb">
+        <li>
+            <p>YOU ARE HERE</p>
+        </li> 
+        <li><a href="#/testimonails" class="active">Testimonails</a>
+        </li>
+    </ul>
+	<div class="page-title">	
+		<i class="icon-custom-left"></i>
+        <h3>Dashboard</h3>	
+    </div>
+    <div class="row">
+    	
+	    <div class="col-md-12">
+	        <div class="grid simple ">
+
+	            <div class="grid-body no-border">
+	            	<br/>
+	            	
+	            	<h3>Testimonails</h3>
+	            	<br/>
+	            	<div ng-show="dump.message" class="alert {{dump.type}}">
+				        <button class="close" ng-click="dump={}"></button>
+				        {{dump.message}}
+				    </div>
+				    <form name="testimonials_form" action="" method="post" ng-submit="save_page();">
+	                  <div class="row form-row ">
+	                  	<div ng-repeat="testimonial in page.testimonials" class="row form-row  m-l-20 m-r-20 xs-m-l-10 xs-m-l-10 xs-m-r-10 ">
+	                      <div class="col-md-12">
+	                        <textarea ng-model="testimonial.description" required="" rows="6" class="form-control" placeholder="Testimonial #{{$index+1}}"></textarea>
+	                      </div>
+	                    </div> 
+	                    
+	                    
+                   
+                    <br/>
+                    <div style="text-align:center;margin-top:20px">
+						<input ng-disabled="testimonials_form.$invalid" type="submit" value="Save" class="btn  btn-success">
+					</div>
+                    <br/>
+                    
+	                  </div>
+	                   </form> 
+	            </div>
+	        </div>
+	    </div>
+	</div>
+</div>

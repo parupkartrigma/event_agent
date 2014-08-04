@@ -1,0 +1,65 @@
+<div ng-controller="users_add_signup_routeCtrl">
+    <div class="clearfix"></div>
+    <div class="alert {{dump.type}}" ng-show="dump.message">{{dump.message}}</div>
+    <div class="grid">
+        <div class="grid-title">
+            <div class="pull-left">
+                <span>Add Signup Route</span>
+                <div class="clearfix"></div>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+        <div class="grid-content overflow">
+            <a href="#/users/" class="btn btn-primary pull-right">
+          		Return to Signup Routes
+          	</a>
+            <div class="clear">
+                <!---->
+            </div>
+            <br/>
+            <div class="span5">
+                <div class="form-horizontal">
+                    <div class="formRow">
+                        <label>Auto Approve</label>
+                        <div class="formRight">
+                            <label class="inline checkbox">
+                                <input ng-model="route.auto_approve" type="checkbox">Auto Approve
+                            </label>
+
+
+                        </div>
+                    </div>
+                    <div class="formRow">
+                        <label>Group</label>
+                        <div class="formRight">
+                            <select ng-model="route.group_id" class="span4">
+                                <option value="">Group</option>
+                                <option ng-repeat="group in groups" value="{{group.name}}">{{group.name}}</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="formRow">
+                        <label>Custom CSS Rules</label>
+                        <div class="formRight">
+                            <textarea ng-model="route.custom_css" style="height:150px" class="span4"></textarea>
+                        </div>
+                    </div>
+
+                    <br/>
+                    <br/>
+                    <div class="formRow">
+                        <label></label>
+                        <div class="formRight">
+                            <span class="btn btn-primary" ng-click="add()">
+                                Add Route
+                            </span>
+                        </div>
+                    </div>
+                    <br/>
+                    <br/>
+                </div>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+    </div>
+</div>

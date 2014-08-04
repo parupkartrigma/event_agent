@@ -1,0 +1,62 @@
+<div ng-controller="supported_devicesCtrl">
+    <div class="clearfix"></div>
+    <div class="alert {{dump.type}}" ng-show="dump.message">{{dump.message}}</div>
+    <div class="grid">
+        <div class="grid-title">
+            <div class="pull-left">
+                <span>Manage Supported Devices</span>
+                <div class="clearfix"></div>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+        <div class="grid-content overflow">
+            <a href="#/supported_devices/add/" class="btn btn-primary pull-right">
+              Add Device
+            </a>
+            <div class="clear">
+                <!---->
+            </div>
+            <br/>
+            <div class="alert" ng-show="supported_devices.length==0">
+                No items matching selected criteria.
+            </div>
+            <table class="table table-bordered table-mod-2" ng-show="supported_devices.length>0">
+                <thead>
+                    <tr>
+                    	<th>Device Name</th>
+                        <th>Platform Name</th>
+                        <th width="100">Actions</th>
+                    </tr>
+                </thead>
+                <tbody ng-repeat="device in supported_devices">
+                    <tr>
+                    	<td>{{device.name}}</td>
+                        <td>{{device.platform}}</td>
+                        <td>
+                            <div class="btn-group">
+                                <a href="#/supported_devices/edit/{{device._id}}" class="btn">
+                      Edit
+                    </a>
+                                <span ng-click="delete_confirm=true" class="btn btn-danger">
+                                    Delete
+                                </span>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr ng-show="delete_confirm">
+                        <td colspan="2">
+                            <div class="alert">
+                                Are you sure you want to delete this item?
+                                <span class="btn-group">
+                                    <span ng-click="delete($index)" class="btn btn-danger">Yes, sure</span>
+                                    <span ng-click="delete_confirm=false;" class="btn btn-default">Cancel</span>
+                                </span>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="clearfix"></div>
+        </div>
+    </div>
+</div>

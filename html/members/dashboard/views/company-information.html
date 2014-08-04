@@ -1,0 +1,140 @@
+<div ng-controller="company_information" ng-show="current_user.plan.company_description">
+
+	<ul class="breadcrumb">
+        <li>
+            <p>YOU ARE HERE</p>
+        </li> 
+        <li><a href="#/company-info" class="active">Company Information</a>
+        </li>
+    </ul>
+	<div class="page-title">	
+		<a href="" ng-click="goBack();"><i class="icon-custom-left"></i></a>
+        <h3>Dashboard</h3>	
+    </div>
+    <div class="row">
+    	
+	    <div class="col-md-12">
+	        <div class="grid simple ">
+
+	            <div class="grid-body no-border">
+	            	<br/>
+	            	
+	            	<h3>Company <span class="semi-bold">Information</span></h3>
+	            	<br/>
+	            	<div ng-show="dump.message" class="alert {{dump.type}}">
+				        <button class="close" ng-click="dump={}"></button>
+				        {{dump.message}}
+				      </div>
+				    
+				      <form name="company_info_form" action="" method="post" ng-submit="save_page();">
+	                  <div class="row form-row ">
+	                  	<div class="col-md-8 col-sm-8">
+	                  	<div class="row form-row  xs-m-l-10 xs-m-r-10">
+	                      <div class="col-md-6 col-sm-6">
+	                      	<label for="">Contact Person</label>
+	                        <input ng-model="page.contact_person"  required type="text"  class="form-control" placeholder="Contact Person">
+	                      </div>
+	                      <div class="col-md-6 col-sm-6">
+	                      	<label for="">Company Name</label>
+	                        <input ng-model="page.company_name" required  type="text"  class="form-control" placeholder="Company Name">
+	                      </div>
+	                    </div>  
+	                    <div class="row form-row  xs-m-l-10 xs-m-r-10">
+	                      <div class="col-md-12">
+	                      	<label for="">Email</label>
+	                        <input ng-model="page.email"  type="email"  class="form-control" placeholder="Email Address">
+	                      </div>
+	                    </div>  
+	                    <div class="row form-row  xs-m-l-10 xs-m-r-10">
+	                      <div class="col-md-12 col-sm-12">
+	                      	<label for="">Address</label>
+	                        <input ng-model="page.address"   type="text"  class="form-control" placeholder="Address">
+	                      </div>
+	                      <div class="col-md-6 col-sm-6">
+	                      	<label for="">Second Address</label>
+	                        <input ng-model="page.second_address" type="text"  class="form-control" placeholder="Second Address">
+	                      </div>
+	                      <div class="col-md-6 col-sm-6">
+	                      	<label for="">Suburb</label>
+	                        <input ng-model="page.suburb"   type="text"  class="form-control" placeholder="Suburb">
+	                      </div>
+	                    </div> 
+	                    <div class="row form-row  xs-m-l-10 xs-m-r-10">
+	                      
+	                      <div class="col-md-4 col-sm-4">
+	                        <label>State</label>
+	                        <input ng-model="page.state"  required type="text"  class="form-control" placeholder="State">
+	                      </div>
+	                      <div class="col-md-4 col-sm-4">
+	                      	<label for="">Postcode</label>
+	                        <input ng-model="page.postcode"  type="text"  class="form-control" placeholder="Postcode"/>
+	                      </div>
+	                      <div class="col-md-4 col-sm-4">
+	                      	<label for="">Country</label>
+	                        <input ng-model="page.country" required type="text"  class="form-control" placeholder="Country"/>
+	                      </div>
+	                    </div>
+	                    <div class="row form-row  xs-m-l-10 xs-m-r-10">
+	                      <div class="col-md-6 col-sm-6">
+	                      	<label for="">Work Phone</label>
+	                        <input ng-model="page.work_phone" required  ng-minlength="10" ng-maxlength="20"  type="text"  class="form-control" placeholder="Work Phone"/>
+	                      </div>
+	                      <div class="col-md-6 col-sm-6">
+	                      	<label for="">Mobile</label>
+	                        <input ng-model="page.mobile"   type="text"  class="form-control" placeholder="Mobile"/>
+	                      </div>
+	                    </div> 
+	                    <div class="row form-row  xs-m-l-10 xs-m-r-10">
+	                      <div class="col-md-6 col-sm-6">
+	                      	<label for="">Longitude</label>
+	                        <input ng-model="page.longitude" type="text"  class="form-control" placeholder="Longitude"/>
+	                      </div>
+	                      <div class="col-md-6 col-sm-6">
+	                      	<label for="">Latitude</label>
+	                        <input ng-model="page.latitude"  type="text"  class="form-control" placeholder="Latitude"/>
+	                      </div>
+	                    </div> 
+						</div>
+						<div class="col-md-4 col-sm-4">
+							 <div class="row form-row  xs-m-l-10 xs-m-r-10 margin-bottom">
+		                      <div class="col-md-12">
+		                      	<label for="">Description</label>
+		                        <textarea ng-change="limit(page)" ng-model="page.description"  rows="8" class="form-control" placeholder="Describe your company and what it does..."></textarea>
+		                        <span class="label label-inverse">{{50-countOf(page.description)}} words or less. Think Twitter.</span>
+		                        <div style="text-align:center;margin-top:20px">
+		                        	<button class="btn  btn-success" type="submit" >
+		                        		<i ng-show="loading" class="fa fa-spinner fa-spin"></i>
+		                        		Save
+		                        	</button>
+									
+								</div>
+		                      </div>
+		                    </div> 
+						</div>
+                   
+                    <br/>
+                    <br/>
+                    
+	                  </div>
+	              </form>
+	                    
+	            </div>
+	        </div>
+	    </div>
+	</div>
+</div>
+<div ng-controller="company_information" ng-show="!current_user.plan.company_description">
+	    <div class="row">
+		    <div class="col-md-12">
+		        <div class="grid simple ">
+		            <div class="grid-body no-border">
+		            	<br/>
+		            	<br/>
+		            	<!-- <div class="alert alert-error">
+							You don't have permission to view this page {{current_user.username}}
+						</div> -->
+		        	</div>
+		    	</div>
+			</div>
+		</div>
+</div>

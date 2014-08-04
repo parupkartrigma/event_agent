@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+    <meta charset="utf-8" />
+    <title>Event Agent</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta content="" name="description" />
+    <meta content="" name="author" />
+
+    <link href="plugins/pace/pace-theme-flash.css" rel="stylesheet" type="text/css" media="screen" />
+    <link href="plugins/jquery-slider/css/jquery.sidr.light.css" rel="stylesheet" type="text/css" media="screen" />
+    <!-- BEGIN CORE CSS FRAMEWORK -->
+    <link href="plugins/boostrapv3/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="plugins/boostrapv3/css/bootstrap-theme.min.css" rel="stylesheet" type="text/css" />
+    <link href="plugins/font-awesome/css/font-awesome.css" rel="stylesheet" type="text/css" />
+    <link href="css/animate.min.css" rel="stylesheet" type="text/css" />
+    <!-- END CORE CSS FRAMEWORK -->
+
+    <!-- BEGIN CSS TEMPLATE -->
+    <link href="css/style.css" rel="stylesheet" type="text/css" />
+    <link href="css/responsive.css" rel="stylesheet" type="text/css" />
+    <link href="css/custom-icon-set.css" rel="stylesheet" type="text/css" />
+    <link rel="shortcut icon" href="img/favicon.ico"/>
+    <!-- END CSS TEMPLATE -->
+</head>
+<!-- END HEAD -->
+
+<!-- BEGIN BODY -->
+
+<body class=""  >
+    <!-- BEGIN HEADER -->
+    <div class="header navbar navbar-inverse ">
+        <!-- BEGIN TOP NAVIGATION BAR -->
+        <div class="navbar-inner">
+            <div class="header-seperation">
+                <ul class="nav pull-left notifcation-center" id="main-menu-toggle-wrapper" style="display:none">
+                    <li class="dropdown">
+                        <a id="main-menu-toggle" href="#main-menu" class="">
+                            <div class="iconset top-menu-toggle-white"></div>
+                        </a>
+                    </li>
+                </ul>
+                <!-- BEGIN LOGO -->
+                <a href="index.html">
+                    <img src="img/logo.png" class="logo" alt=""   />
+                </a>
+                <!-- END LOGO -->
+
+            </div>
+            <!-- END RESPONSIVE MENU TOGGLER -->
+            <div class="header-quick-nav">
+                <!-- BEGIN TOP NAVIGATION MENU -->
+                <div class="pull-left">
+                    <ul class="nav quick-section">
+                        <li class="quicklinks">
+                            <a href="#" class="" id="layout-condensed-toggle">
+                                <div class="iconset top-menu-toggle-dark"></div>
+                            </a>
+                        </li>
+                    </ul>
+                    <ul class="nav quick-section">
+
+
+                        <li class="quicklinks">
+                            <a href="#" class="">
+                                <div class="iconset top-tiles"></div>
+                            </a>
+                        </li>
+                        <li  style="display:none"  ng-class="{'another_login_block':cache.get('active_user')!==current_user._id&&current_user.is_admin}"  >
+                            <span class="label label-important" >Logged in as {{getUsername()}}</span>
+                            <span href="" ng-click="setUserID(current_user._id);" class="label label-primary">Logout</span>
+                        </li>
+                        <!-- <li class="m-r-10 input-prepend inside search-form no-boarder">
+                            <span class="add-on">
+                                <span class="iconset top-search"></span>
+                            </span>
+                            <input name="" type="text" class="no-boarder " placeholder="Search Dashboard" style="width:250px;">
+                        </li> -->
+                    </ul>
+                </div>
+                <!-- END TOP NAVIGATION MENU -->
+                <!-- BEGIN CHAT TOGGLER -->
+                <div class="pull-right">
+                    <div class="chat-toggler">
+                        <a href="" class="dropdown-toggle" id="my-task-list" data-placement="bottom" data-content='' data-toggle="dropdown">
+                            <div class="user-details">
+                                <div class="username">
+                                    
+                                    <span class="bold">{{current_user.fullname}}</span>
+                                </div>
+                            </div>
+                            <div class="iconset top-down-arrow"></div>
+
+                        </a>
+                        <ul class="dropdown-menu  pull-right" role="menu" aria-labelledby="user-options">
+                            <li><a ng-href="#/my-account"> My Account</a>
+                            </li>
+
+                            <li class="divider"></li>
+                            <li><a href="" ng-click="logout();"><i class="fa fa-power-off"></i>&nbsp;&nbsp;Log Out</a>
+                            </li>
+                        </ul>
+
+                        <div class="profile-pic">
+                            <img ng-src="{{page.logo}}" alt=""  width="35"  />
+                        </div>
+                    </div>
+
+                </div>
+                <!-- END CHAT TOGGLER -->
+            </div>
+            <!-- END TOP NAVIGATION MENU -->
+
+        </div>
+        <!-- END TOP NAVIGATION BAR -->
+    </div>
+    <!-- END HEADER -->
+    <!-- BEGIN CONTAINER -->
+    <div class="page-container row-fluid">
+        <!-- BEGIN SIDEBAR -->
+        <div class="page-sidebar" id="main-menu">
+            <!-- BEGIN MINI-PROFILE -->
+            <div class="page-sidebar-wrapper" id="main-menu-wrapper">
+                <div class="user-info-wrapper">
+                    <div class="profile-wrapper">
+                        <img ng-src="{{page.logo}}" alt=""   />
+                    </div>
+                    <div class="user-info" style="padding-top:15px">
+
+                        <div class="greeting">Welcome</div>
+                        <div class="username">{{page.company_name}}</div>
+                        
+                    </div>
+                </div>
+                <!-- END MINI-PROFILE -->
+
+                <!-- BEGIN SIDEBAR MENU -->
+                <p class="menu-title">BROWSE
+                    <span class="pull-right"><a href="javascript:;"><i class="fa fa-refresh"></i></a>
+                    </span>
+                </p>
+                <ul>
+                    <li class="start " ng-show="current_user.is_admin" ng-class="{'active':active=='dashboard'||!active}" ng-click="active='dashboard'">
+                        <a ng-href="#/" > <i class="icon-custom-home"></i> 
+                            <span class="title">Dashboard</span>
+                            <span class="selected"></span>
+                            <span class="badge badge-important pull-right">*</span>
+                        </a>
+                    </li>
+                    <li class="" ng-class="{'active':active=='users_management'}" ng-click="active='users_management'" ng-show="current_user.is_admin">
+                        <a ng-href="#/users_management/"> <i class="fa  fa-users"></i> 
+                            <span class="title">User Management</span>
+                        </a>
+                    </li>
+                    <li class="" ng-class="{'active':active=='plans_management'}" ng-click="active='plans_management'" ng-show="current_user.is_admin">
+                        <a ng-href="#/plans_management/"> <i class="fa  fa-suitcase"></i> 
+                            <span class="title">View Plans</span>
+                        </a>
+                    </li>
+                    <li class="" ng-class="{'active':active=='plans_management_add'}" ng-click="active='plans_management_add'" ng-show="current_user.is_admin">
+                        <a ng-href="#/plans_management/add"> <i class="fa  fa-plus-square"></i> 
+                            <span class="title">Create Plan</span>
+                        </a>
+                    </li>
+                    <li class="" ng-class="{'active':active=='billing-logs'}" ng-click="active='billing-logs'" ng-show="current_user.is_admin">
+                        <a ng-href="#/billing-logs/"> <i class="fa  fa-money"></i> 
+                            <span class="title">Billing</span>
+                        </a>
+                    </li>
+                    <li class="" ng-class="{'active':active=='categories'}" ng-click="active='categories'" ng-show="current_user.is_admin">
+                        <a ng-href="#/categories/"> <i class="fa   fa-sitemap"></i> 
+                            <span class="title">Create / Remove Categories</span>
+                        </a>
+                    </li>
+                    <li class="" ng-class="{'active':active=='push-notifications'}" ng-click="active='push-notifications'" ng-show="current_user.is_admin">
+                        <a ng-href="#/push-notifications/"> <i class="fa  fa-bullhorn"></i> 
+                            <span class="title">Push Notifications</span>
+                        </a>
+                    </li>
+                    <!-- <li class="" ng-class="{'active':active=='importer'}" ng-click="active='importer'" ng-show="current_user.is_admin">
+                        <a ng-href="#/importer/"> <i class="fa  fa-bullhorn"></i> 
+                            <span class="title">Data Importer</span>
+                        </a>
+                    </li> -->
+                    <li class="" ng-class="{'active':active=='company-info'}" ng-click="active='company-info'" ng-show="current_user.plan.company_description">
+                        <a ng-href="#/company-info/"> <i class="fa  fa-credit-card"></i> 
+                            <span class="title">Company Info</span>
+                        </a>
+                    </li>
+                    <li class="" ng-class="{'active':active=='logo'}" ng-click="active='logo'" ng-show="current_user.plan.logo">
+                        <a ng-href="#/logo/"> <i class="fa  fa-globe"></i> 
+                            <span class="title">Logo</span>
+                        </a>
+                    </li>
+                    <li class="" ng-class="{'active':active=='location'}" ng-click="active='location'" ng-show="current_user.plan.contact_location">
+                        <a ng-href="#/location/"> <i class="fa  fa-map-marker"></i> 
+                            <span class="title">Location</span>
+                        </a>
+                    </li>
+                    <li class="" ng-class="{'active':active=='social-links'}" ng-click="active='social-links'" ng-show="current_user.plan.social_links||current_user.plan.website_link">
+                        <a ng-href="#/social-links/"> <i class="fa    fa-bullhorn"></i> 
+                            <span class="title">Website & Social Media Links</span>
+                        </a>
+                    </li>
+                    <li class="" ng-class="{'active':active=='listings'}" ng-click="active='listings'" ng-show="current_user.plan.unlimited_listings">
+                        <a ng-href="#/listings/"> <i class="fa  fa-sitemap"></i> 
+                            <span class="title">Listings</span>
+                        </a>
+                    </li>
+                    <li class="" ng-class="{'active':active=='images'}" ng-click="active='images'" ng-show="current_user.plan.image_uploads">
+                        <a ng-href="#/images/"> <i class="fa fa-camera"></i> 
+                            <span class="title">Images</span>
+                        </a>
+                    </li>
+                    <li class="" ng-class="{'active':active=='videos'}" ng-click="active='videos'" ng-show="current_user.plan.video_uploads">
+                        <a ng-href="#/videos/"> <i class="fa fa-film"></i> 
+                            <span class="title">Videos</span>
+                        </a>
+                    </li>
+                    <li class="" ng-class="{'active':active=='brochure'}" ng-click="active='brochure'" ng-show="current_user.plan.brochure">
+                        <a ng-href="#/brochure/"> <i class="fa fa-bar-chart-o"></i> 
+                            <span class="title">Brochure</span>
+                        </a>
+                    </li>
+                    <li class="" ng-class="{'active':active=='testimonials'}" ng-click="active='testimonials'" ng-show="current_user.plan.testimonials">
+                        <a ng-href="#/testimonials/"> <i class="fa fa-quote-right"></i> 
+                            <span class="title">Testimonials</span>
+                        </a>
+                    </li>
+                    <li class="" ng-class="{'active':active=='manage-plan'}" ng-click="active='manage-plan'" ng-show="!current_user.is_admin">
+                        <a ng-href="#/manage-plan/"> <i class="fa fa-suitcase"></i> 
+                            <span class="title">Manage Plan</span>
+                        </a>
+                    </li>
+                    <li class="" ng-class="{'active':active=='billing-history'}" ng-click="active='billing-history'" ng-show="!current_user.is_admin&&current_user.plan.name=='Premium'">
+                        <a ng-href="#/billing-history/"> <i class="fa fa-money"></i> 
+                            <span class="title">Billing History</span>
+                        </a>
+                    </li>
+                    <li class="" >
+                        <a ng-href="" ng-click="logout();"> <i class="fa fa-user"></i> 
+                            <span class="title">Logout</span>
+                        </a>
+                    </li>
+
+
+
+
+
+
+
+                </ul>
+
+                <div class="clearfix"></div>
+                <!-- END SIDEBAR MENU -->
+            </div>
+        </div>
+        <a href="#" class="scrollup">Scroll</a>
+        <div class="footer-widget">
+
+            <a href="" ng-click="logout()"><i class="fa fa-power-off"></i></a>
+        </div>
+    </div>
+    <!-- END SIDEBAR -->
+    <!-- BEGIN PAGE CONTAINER-->
+    <div class="page-content">
+        <!-- BEGIN SAMPLE PORTLET CONFIGURATION MODAL FORM-->
+        <div id="portlet-config" class="modal hide">
+            <div class="modal-header">
+                <button data-dismiss="modal" class="close" type="button"></button>
+                <h3>Widget Settings</h3>
+            </div>
+            <div class="modal-body">
+              <div class="terms_holder">
+                <p>These Terms of Use ("Terms") govern the use of the EventAgent, ("we," "us", or “Challenger Events"), Mobile Application (App). ANYONE ACCESSING THE APP AGREES TO ABIDE BY THESE TERMS. We may modify these Terms at any time, and such modification shall be effective immediately upon posting on the App. Your continued access or use of the App after the modifications have become effective shall be deemed your conclusive acceptance of the modified Terms.</p>
+                <ol>
+<li>License. The contents of our App, including its "look and feel" (e.g., text, graphics, images, logos, and button icons), editorial content, notices, software (including HTML or XML-based computer programs) and other material, are protected under both Australian and foreign copyright, trademark, and other laws. These contents belong or are licensed to Challenger Events. We hereby grant you the right to view and use our App subject to these Terms. You may download or print a copy of information provided in the App for internal use or distribution only. Permission to reprint or electronically reproduce any document or graphic in whole or in part for any other purpose is expressly prohibited, unless prior written consent is obtained from us.</li>
+<li>Your Responsibility. You assume all responsibility for your use of, or access to, this App, including your access to any EventAgent literature obtained from the App, and waive all claims or causes of action against Challenger Events, EventAgent, its officers, directors, employees, agents and affiliates in connection therewith.</li>
+<li>Disclaimer. THIS APP AND THE INFORMATION IT CONTAINS IS MADE AVAILABLE "AS IS," WITHOUT WARRANTY OF ANY KIND, EITHER EXPRESS OR IMPLIED. WE MAKE NO GUARANTEE THAT THE INFORMATION ON THIS APP IS UP-TO-DATE, ACCURATE, OR COMPLETE, AND YOU SHOULD NOT RELY ON IT FOR ANY DECISION OR TO TAKE ANY ACTION. WE HEREBY DISCLAIM ANY WARRANTY THAT THE INFORMATION ON THIS APP WILL BE FREE OF INTERRUPTION, OR THAT THE SITE IS FREE OF VIRUSES, WORMS, TROJAN HORSES OR OTHER CODE THAT MANIFEST CONTAMINATING OR DESTRUCTIVE PROPERTIES. Changes are periodically made to the information herein; these changes will be incorporated in new editions of the App.</li>
+<li>Additional Products and Services Disclaimer. EventAgent makes available certain descriptions of its products and services on the App. EventAgent does not represent or warrant that any particular product or service will conform to those descriptions. Each product or service is governed specifically and exclusively by the instrument entered into by the parties for that product or service and not by any information posted on the App. This paragraph 4 is in addition to and not instead of the disclaimers set forth in paragraph 3 above.</li>
+<li>Indemnity. You agree to indemnify, defend and hold harmless Challenger Events, EventAgent, its officers, directors, employees, agents and affiliates from and against all losses, expenses, damages and costs, including reasonable attorneys' fees, arising out of or relating to any violation of these Terms or any activity related to use of the App (including but not limited to infringement of third parties' worldwide intellectual property rights or negligent or wrongful conduct) by you or any other person accessing the App on your behalf.</li>
+<li>Restricted Access Portions Of The App. You agree to take reasonable measures to ensure that no unauthorized person or entity shall have access to restricted areas of the App using your user name or password. You agree that, if you are provided rights to access or use restricted areas of the App, those rights are non-transferable. You may not assign, sublicense, transfer, pledge, lease, rent, or share the user name and password to any one other than an employee or agent authorized to act on your behalf, and subject to all of the provisions set forth in these Terms. You assume all responsibility for loss or misuse of your password and are responsible for any activities undertaken by a person in possession of your user name or password for any reason other than solely due to the negligence of Challenger Events or EventAgent.</li>
+<li>Privacy. We may use any information you provide internally for any business purpose, including to send you subsequent communications. We may sell or transfer your business information to a third party for any reason, without your permission. Privacy of personal information provided through our App, and general information on cookies and what they are, are addressed in our Mobile Application Privacy Statement.</li>
+<li>Governing Law and Forum. These Terms, and the interpretation, performance and enforcement of your and Challenger Events's rights and duties, shall be construed in accordance with the laws of theCommonwealth of Australia, except for the conflict or choice-of-law principles thereof. By using the App, you agree to submit any and all disputes arising out of or relating to these Terms to the exclusive jurisdiction of the state or federal courts located in Los Angeles County, California, or, at Challenger Events's sole election, to binding arbitration before a single arbitrator pursuant to the Australia’s Commercial Dispute Resolution Procedures, with such arbitration to take place in and Australian court of Law.</li>
+<p>Mobile Application Privacy Policy</p>
+<p>We at Challenger Events recognize and respect your privacy. This Privacy Statement explains how we collect, use and disclose personally identifying information ("Personal Information") gathered through our Mobile Application only. It does not address our relations with sales representatives or clients or the confidentiality that we accord to Personal Information collected in connection with those business engagements. We also collect business information from users of our Mobile Application, but only if they submit an online application for funding through our Mobile Application or are registered clients or sales representatives. That business information (including any individual contact information associated with that business) is not subject to this Privacy Statement. </p>
+<p>We reserve the right to change this Privacy Statement from time to time. Your use of our Mobile Application and submission of Personal Information through this application constitutes acceptance and understanding of this Statement as in effect at the time of your submission.</p>
+<p>What Information We Collect and What We Do With It</p>
+<p>We do not collect Personal Information from visitors to our Mobile Application unless you voluntarily decide to transmit it to us through one of the provided forms or e-mail addresses. Application users are invited to make inquiries about our company and the services we provide. We will use the information you provide us in those communications to respond to your inquiry and to provide you with information relating to our company or products that we believe you may find of interest.</p>
+<p>We may also provide this information to our affiliated companies or third parties to allow our affiliated companies or those other third parties to provide you with information relating to products or services that we or they believe you may find of interest. We also disclose your Personal Information to contractors or service providers who provide services or perform functions on our behalf - for example, an information technology service provider or human resources consultant. Those contractors and service providers are permitted to use your Personal Information only for the purpose for which it has been provided and may not disclose it to any other third party except at our express direction and consistently with this Privacy Statement.</p>
+
+              </div>
+            </div>
+        </div>
+        <div class="clearfix"></div>
+        <div class="content" ng-view>
+
+        </div>
+    </div>
+    </div>
+    <!-- END CONTAINER -->
+    <!-- BEGIN CHAT -->
+
+    <!-- END CHAT -->
+    <!-- END CONTAINER -->
+    <script src='//maps.googleapis.com/maps/api/js?sensor=false'></script>
+    <script src="plugins/jquery-1.8.3.min.js" type="text/javascript"></script>
+    <script src="js/jcrop.js" type="text/javascript"></script>
+    <script src="js/moment.js" type="text/javascript"></script>
+    <script src="js/underscore.js" type="text/javascript"></script>
+    <script src="plugins/jquery-flot/jquery.flot.js"></script>
+    <script src="plugins/jquery-flot/jquery.flot.categories.js"></script>
+    <script src="plugins/jquery-flot/jquery.flot.resize.js"></script>
+    <script src="js/angular.js" type="text/javascript"></script>
+    <script src="js/angular-resource.js" type="text/javascript"></script>
+    <script src="js/kinvey.js" type="text/javascript"></script>
+    <script src="js/ui-bootstrap-custom-0.10.0.min.js" type="text/javascript"></script>
+    <script src="js/ui-bootstrap-custom-tpls-0.10.0.min.js" type="text/javascript"></script>
+    <script src="js/angular.modules.js" type="text/javascript"></script>
+
+
+
+    <!-- BEGIN CORE JS FRAMEWORK-->
+
+    <script src="plugins/jquery-ui/jquery-ui-1.10.1.custom.min.js" type="text/javascript"></script>
+    <script src="plugins/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
+    <script src="plugins/breakpoints.js" type="text/javascript"></script>
+    <script src="plugins/jquery-unveil/jquery.unveil.min.js" type="text/javascript"></script>
+    <script src="plugins/jquery-block-ui/jqueryblockui.js" type="text/javascript"></script>
+    <!-- END CORE JS FRAMEWORK -->
+    <!-- BEGIN PAGE LEVEL JS -->
+    <script src="plugins/jquery-slider/jquery.sidr.min.js" type="text/javascript"></script>
+    <script src="plugins/jquery-slimscroll/jquery.slimscroll.min.js" type="text/javascript"></script>
+    <script src="plugins/pace/pace.min.js" type="text/javascript"></script>
+    <script src="plugins/jquery-numberAnimate/jquery.animateNumbers.js" type="text/javascript"></script>
+    <!-- END PAGE LEVEL PLUGINS -->
+
+    <!-- BEGIN CORE TEMPLATE JS -->
+    <script src="js/core.js" type="text/javascript"></script>
+    <script src="js/chat.js" type="text/javascript"></script>
+    <script src="js/demo.js" type="text/javascript"></script>
+    <!-- END CORE TEMPLATE JS -->
+</body>
+
+</html>

@@ -1,0 +1,236 @@
+<div ng-controller="plans_management_editCtrl" ng-show="current_user.is_admin">
+
+	<ul class="breadcrumb">
+        <li>
+            <p>YOU ARE HERE</p>
+        </li> 
+        <li><a href="#/plans_management/" class="active">Plans Management</a>
+        </li>
+    </ul>
+	<div class="page-title">	
+		<a href="" ng-click="goBack();"><i class="icon-custom-left"></i></a>
+        <h3 ng-show="plan._id">Edit Plan</h3>
+        <h3 ng-show="!plan._id">Add Plan</h3>		
+    </div>
+    <div class="row">
+    	
+	    <div class="col-md-12">
+	        <div class="grid simple ">
+
+	            <div class="grid-body no-border">
+	            	<br/>
+	            	<div ng-show="dump.message" class="alert {{dump.type}}">
+				        <button class="close" ng-click="dump={}"></button>
+				        {{dump.message}}
+				      </div>
+				      <h3 ><span class="semi-bold">{{plan.name}}</span></h3>
+				      <div>
+				      	<br/>
+				      	
+	            	<form name="plan_form"  ng-submit="save()" id="frm_register" class="animated fadeIn" >
+                   <div class="row form-row ">
+                      <div class="col-md-4 col-sm-4">
+                      	<label class="form-label">Plan Name</label>
+                        <input ng-model="plan.name"  required type="text"  class="form-control" placeholder="Plan Name">
+                      </div>
+                      <div class="col-md-4 col-sm-4">
+                      	<label class="form-label">Plan Price</label>
+                        <input ng-model="plan.price" required  type="text"  class="form-control" placeholder="Price">
+                      </div>
+                      <div class="col-md-4 col-sm-4">
+                      	<label class="form-label">Plan Currency</label>
+                        <input ng-model="plan.currency" required  type="text"  class="form-control" placeholder="Currency">
+                      </div>
+                    </div>
+                    <div class="row form-row ">
+                      <div class="col-md-4 col-sm-4">
+                      	<label class="form-label">Plan Interval</label>
+                      	<select ng-model="plan.interval" class="form-control" id="">
+                      		<option value="">Plan Interval</option>
+                      		<option value="week">Week</option>
+                      		<option value="month">Month</option>
+                      		<option value="year">Year</option>
+                      		
+                      	</select>
+                     
+                      </div>
+                      <div class="col-md-4 col-sm-4">
+                      	<label class="form-label">Interval Count</label>
+                        <input ng-model="plan.interval_count" required  type="text"  class="form-control" placeholder="Interval Count">
+                      </div>
+                      <div class="col-md-4 col-sm-4">
+                      	<label class="form-label">Trial Period</label>
+                        <input ng-model="plan.trial_period" required  type="text"  class="form-control" placeholder="Trial Period">
+                      </div>
+                    </div>
+                    
+                    <h3><span class="semi-bold">Permissions</span></h3>
+                    <br/>
+                   <div class="row form-row ">
+                   	<div class="col-md-3 col-sm-3">
+                        <div class="form-group">
+		                   	<label class="form-label">Logo</label>
+		                    <div class="radio radio-success">
+							     <input type="radio" id="plan.logo_yes" ng-checked="plan.logo==true"  ng-model="plan.logo"  ng-value="true"  />
+							     <label for="plan.logo_yes">Yes</label>
+							     <input type="radio"  id="plan.logo_no" ng-checked="plan.logo==false" ng-model="plan.logo"   ng-value="false"/>
+							      <label for="plan.logo_no">No</label>
+							</div>
+	                   </div>
+                      </div>
+                     
+                      <div class="col-md-3 col-sm-3">
+                        <div class="form-group">
+		                   	<label class="form-label">Contact & Location</label>
+		                    <div class="radio radio-success">
+							     <input type="radio" id="plan.contact_location_yes" ng-checked="plan.contact_location==true"  ng-model="plan.contact_location"  ng-value="true"  />
+							     <label for="plan.contact_location_yes">Yes</label>
+							     <input type="radio"  id="plan.contact_location_no" ng-checked="plan.contact_location==false" ng-model="plan.contact_location"   ng-value="false"/>
+							      <label for="plan.contact_location_no">No</label>
+							</div>
+	                   </div>
+                      </div>
+                      <div class="col-md-3 col-sm-3">
+                        <div class="form-group">
+		                   	<label class="form-label">Company Description</label>
+		                    <div class="radio radio-success">
+							     <input type="radio" id="plan.company_description_yes" ng-checked="plan.company_description==true"  ng-model="plan.company_description"  ng-value="true"  />
+							     <label for="plan.company_description_yes">Yes</label>
+							     <input type="radio"  id="plan.company_description_no" ng-checked="plan.company_description==false" ng-model="plan.company_description"   ng-value="false"/>
+							      <label for="plan.company_description_no">No</label>
+							</div>
+	                   </div>
+                      </div>
+                      <div class="col-md-3 col-sm-3">
+                        <div class="form-group">
+		                   	<label class="form-label">Website Link</label>
+		                    <div class="radio radio-success">
+							     <input type="radio" id="plan.website_link_yes" ng-checked="plan.website_link==true"  ng-model="plan.website_link"  ng-value="true"  />
+							     <label for="plan.website_link_yes">Yes</label>
+							     <input type="radio"  id="plan.website_link_no" ng-checked="plan.website_link==false" ng-model="plan.website_link"   ng-value="false"/>
+							      <label for="plan.website_link_no">No</label>
+							</div>
+	                   </div>
+                      </div>
+                    </div>
+                    <div class="row form-row ">
+                    	<div class="col-md-3 col-sm-3">
+	                        <div class="form-group">
+			                   	<label class="form-label">Social Media Links</label>
+			                    <div class="radio radio-success">
+								     <input type="radio" id="plan.social_links_yes" ng-checked="plan.social_links==true"  ng-model="plan.social_links"  ng-value="true"  />
+								     <label for="plan.social_links_yes">Yes</label>
+								     <input type="radio"  id="plan.social_links_no" ng-checked="plan.social_links==false" ng-model="plan.social_links"   ng-value="false"/>
+								      <label for="plan.social_links_no">No</label>
+								</div>
+		                   </div>
+	                      </div>
+	                      <div class="col-md-3 col-sm-3">
+	                        <div class="form-group">
+			                   	<label class="form-label">Unlimited Listings</label>
+			                    <div class="radio radio-success">
+								     <input type="radio" id="plan.unlimited_listings_yes" ng-checked="plan.unlimited_listings==true"  ng-model="plan.unlimited_listings"  ng-value="true"  />
+								     <label for="plan.unlimited_listings_yes">Yes</label>
+								     <input type="radio"  id="plan.unlimited_listings_no" ng-checked="plan.unlimited_listings==false" ng-model="plan.unlimited_listings"   ng-value="false"/>
+								      <label for="plan.unlimited_listings_no">No</label>
+								</div>
+		                   </div>
+	                      </div>
+                      
+                      		<div class="col-md-3 col-sm-3">
+		                        <div class="form-group">
+				                   	<label class="form-label">Brochure PDF</label>
+				                    <div class="radio radio-success">
+									     <input type="radio" id="plan.brochure_yes" ng-checked="plan.brochure==true"  ng-model="plan.brochure"  ng-value="true"  />
+									     <label for="plan.brochure_yes">Yes</label>
+									     <input type="radio"  id="plan.brochure_no" ng-checked="plan.brochure==false" ng-model="plan.brochure"   ng-value="false"/>
+									      <label for="plan.brochure_no">No</label>
+									</div>
+			                   </div>
+		                    </div>
+		                    <div class="col-md-3 col-sm-3">
+		                        <div class="form-group">
+				                   	<label class="form-label">Testimonials</label>
+				                    <div class="radio radio-success">
+									     <input type="radio" id="plan.testimonials_yes" ng-checked="plan.testimonials==true"  ng-model="plan.testimonials"  ng-value="true"  />
+									     <label for="plan.testimonials_yes">Yes</label>
+									     <input type="radio"  id="plan.testimonials_no" ng-checked="plan.testimonials==false" ng-model="plan.testimonials"   ng-value="false"/>
+									      <label for="plan.testimonials_no">No</label>
+									</div>
+			                   </div>
+		                    </div>
+                    </div>
+                    <div class="row form-row ">
+                      
+                      <div class="col-md-3 col-sm-3">
+	                        <div class="form-group">
+			                   	<label class="form-label">Image Uploads</label>
+			                    <div class="radio radio-success">
+								     <input type="radio" id="plan.image_uploads_yes" ng-checked="plan.image_uploads==true"  ng-model="plan.image_uploads"  ng-value="true"  />
+								     <label for="plan.image_uploads_yes">Yes</label>
+								     <input type="radio"  id="plan.image_uploads_no" ng-checked="plan.image_uploads==false" ng-model="plan.image_uploads"   ng-value="false"/>
+								      <label for="plan.image_uploads_no">No</label>
+								</div>
+								<div ng-show="plan.image_uploads==true">
+									{{page.image_uploads_limit}}
+									<select style="width:110px;" ng-model="plan.image_uploads_limit">
+										<option  value="">Limit</option>
+										<option  value="1">1 image</option>
+										<option value="2">2 images</option>
+										<option value="3">3 images</option>
+										<option value="4">4 images</option>
+										<option value="5">5 images</option>
+										<option value="6">6 images</option>
+										<option value="7">7 images</option>
+										<option value="8">8 images</option>
+										<option value="9">9 images</option>
+										<option value="10">10 images</option>
+									</select>
+								</div>
+		                   </div>
+	                    </div>
+                      <div class="col-md-3 col-sm-3">
+	                        <div class="form-group">
+			                   	<label class="form-label">Video Uploads</label>
+			                    <div class="radio radio-success">
+								     <input type="radio" id="plan.video_uploads_yes" ng-checked="plan.video_uploads==true"  ng-model="plan.video_uploads"  ng-value="true"  />
+								     <label for="plan.video_uploads_yes">Yes</label>
+								     <input type="radio"  id="plan.video_uploads_no" ng-checked="plan.video_uploads==false" ng-model="plan.video_uploads"   ng-value="false"/>
+								      <label for="plan.video_uploads_no">No</label>
+								</div>
+								
+		                   </div>
+	                    </div>
+                      
+                    </div> 
+                   
+                   
+
+
+                    <!---->
+
+                   <div style="text-align:center;margin-top:20px"><input ng-disabled="plan_form.$invalid"  type="submit" value="Save" class="btn  btn-success"></div>       
+      			</form>
+	                 
+	                   
+	            </div>
+	        </div>
+	    </div>
+	</div>
+</div>
+</div>
+<div ng-controller="plans_management_editCtrl" ng-show="!current_user.is_admin">
+	    <div class="row">
+		    <div class="col-md-12">
+		        <div class="grid simple ">
+		            <div class="grid-body no-border">
+		            	<br/>
+		            	<br/>
+		            	<!-- <div class="alert alert-error">
+							You don't have permission to view this page {{current_user.username}}
+						</div> -->
+		        	</div>
+		    	</div>
+			</div>
+		</div>
+</div>

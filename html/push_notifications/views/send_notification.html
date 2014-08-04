@@ -1,0 +1,68 @@
+<div ng-controller="sendNotificationCtrl">
+    <div class="clearfix"></div>
+    <div class="alert {{dump.type}}" ng-show="dump.message">{{dump.message}}</div>
+    <div class="grid">
+        <div class="grid-title">
+            <div class="pull-left">
+                <span>Push Notifications</span>
+                <div class="clearfix"></div>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+        <div class="grid-content overflow">
+            
+            <div class="clear">
+                <!---->
+            </div>
+            <br/>
+            <div class="span4">
+                <div class="form-horizontal" ng-init="notification.group_id=false;notification.user_id=false;">
+                    <div class="formRow">
+                        <label>User</label>
+                        <div class="formRight form-horizontal">
+                            
+                            <select ng-model="notification.user_id" >
+                                <option value="">Select User</option>
+                                <option ng-repeat="user in users" value="{{user._id}}">{{user.first_name}} {{user.last_name}}-{{user.username}}</option>
+                            </select>
+                            
+                        </div>
+                    </div>
+                    <div class="formRow">
+                        <label>Group</label>
+                        <div class="formRight">
+                           
+                            <select ng-model="notification.group_id" >
+                                <option value="">Select group</option>
+                                <option ng-repeat="group in groups" value="{{group.id}}">{{group.name}}</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="formRow">
+                        <label>Message</label>
+                        <div class="formRight">
+                            <textarea ng-model="notification.message" style="height:150px" class="span4"></textarea>
+                            <div class="inline checkbox" style="margin-top:10px"><input type="checkbox" ng-model="notification.all_mode" /> Send to All Users</div>
+                        </div>
+                        
+                        
+                    </div>
+                    
+                    <br/>
+                    <br/>
+                    <div class="formRow">
+                        <label></label>
+                        <div class="formRight">
+                            <span class="btn btn-primary" ng-click="send()">
+                                Send Notification
+                            </span>
+                        </div>
+                    </div>
+                    <br/>
+                    <br/>
+                </div>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+    </div>
+</div>

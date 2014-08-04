@@ -1,0 +1,39 @@
+<div ng-controller="default_device">
+    <div class="clearfix"></div>
+    <div class="alert {{dump.type}}" ng-show="dump.message">{{dump.message}}</div>
+    <div class="grid">
+        <div class="grid-title">
+            <div class="pull-left">
+                <span>Assign Device to Default Discovery</span>
+                <div class="clearfix"></div>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+        <div class="grid-content overflow">
+            
+            <div class="clear">
+                <!---->
+            </div>
+            
+            <table class="table table-bordered table-mod-2">
+                <thead>
+                    <tr>
+                    	<th>Choose Device</th>
+                    	<th>Platform</th>
+                    	
+                    </tr>
+                </thead>
+                <tbody ng-repeat="device in devices">
+                    <tr>
+                    	<td>
+                    		{{device.name}}
+                    	</td>
+                    	<td><select ng-model="device.platform" ng-change="save(device);"  ng-options="platform.name as platform.name for platform in platforms"></select></td>
+                    	
+                    </tr>
+                </tbody>
+            </table>
+            <div class="clearfix"></div>
+        </div>
+    </div>
+</div>

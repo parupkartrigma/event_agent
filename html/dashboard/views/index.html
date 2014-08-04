@@ -1,0 +1,118 @@
+<div ng-controller="indexCtrl">
+    <div class="clearfix"></div>
+    <div class="alert {{dump.type}}" ng-show="dump.message">{{dump.message}}</div>
+    <div class="grid">
+        <div class="grid-title">
+            <div class="pull-left">
+                <span>Kinvey Stats</span>
+                <div class="clearfix"></div>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+        <div class="grid-content overflow">
+            <div class="information-box-3">
+                    <div class="item">
+                      <div class="box-info">
+                        
+                        <div class="box-figures">{{settings.users_total}}</div>
+                        <div class="box-title">Users Total</div>
+                      </div>
+                    </div>
+                    <div class="item">
+                        <div class="box-info">
+                        
+                        <div class="box-figures">{{settings.active_users}}</div>
+                        <div class="box-title">Active Users</div>
+                      </div>
+                    </div>
+                    <div class="item">
+                        <div class="box-info">
+                        
+                        <div class="box-figures">{{settings.file_storage|bytes}}</div>
+                        <div class="box-title">File Storage</div>
+                      </div>
+                    </div>
+                    <div class="item">
+                        <div class="box-info">
+                        
+                        <div class="box-figures">{{settings.api_calls}}</div>
+                        <div class="box-title">API Calls</div>
+                      </div>
+                    </div>
+                    <div class="item">
+                        <div class="box-info">
+                       
+                        <div class="box-figures">345.23K</div>
+                        <div class="box-title">Data Storage</div>
+                      </div>
+                    </div>
+              </div>
+        </div>
+    </div>
+    <div class="grid">
+        <div class="grid-title">
+            <div class="pull-left">
+                <span>AppFigures Stats</span>
+                <div class="clearfix"></div>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+        <div class="grid-content overflow">
+            <div class="grid-transparent row-fluid quick-stats-box">
+               <div class="span4">
+                    <span>{{sales.revenue|currency}}</span> Income
+               </div>
+               <div class="span4 red">
+                    <span>{{sales.downloads}}</span> downloads
+               </div>
+               <div class="span4 orange">
+                    <span>{{reviews}}</span> Reviews
+               </div> 
+               <div class="clearfix"></div>
+               <div class="appfigures_chart">
+                <h1>App Ranking</h1>
+                   <input type="text" class="input-medium" ng-model="appfigures_from_date" />
+                    <input type="text" class="input-medium"  ng-model="appfigures_to_date" />
+                    <div class="clearfix"></div>
+                    <appfigures-chart class="graph_canvas"  appfigures_from_date="appfigures_from_date" appfigures_to_date="appfigures_to_date" style="height:300px"  ></appfigures-chart>
+               </div>
+                    
+                
+            
+            
+            
+             </div>
+        </div>
+    </div>
+    <div class="grid">
+        <div class="grid-title">
+            <div class="pull-left">
+                <span>Flurry Stats</span>
+                <div class="clearfix"></div>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+        <div class="grid-content overflow">
+            <div class="row">
+                <div class="span4">
+                    <input type="text" class="input-medium" ng-model="from_date" />
+                    <input type="text" class="input-medium"  ng-model="to_date" />
+                </div>
+                <div class="span4">
+                <div class="btn-toolbar " style="margin-top:0px" ng-init="currentChart='ActiveUsers'">
+                    <div class="btn-group">
+                        <button type="button" class="btn" ng-class="{active:currentChart=='ActiveUsers'}" ng-click="currentChart='ActiveUsers';chartlabel='Active Users'" >Active users</button>
+                        <button type="button" ng-class="{active:currentChart=='Sessions'}" class="btn" ng-click="currentChart='Sessions';chartlabel='Sessions'">Sessions</button>
+                        <button type="button" ng-class="{active:currentChart=='MedianSessionLength'}" class="btn" ng-click="currentChart='MedianSessionLength';chartlabel='Median use length'" >Median use length</button>
+                        <button type="button" ng-class="{active:currentChart=='NewUsers'}" class="btn" ng-click="currentChart='NewUsers';chartlabel='New Users'" >New Users</button>
+                    </div>
+                </div>
+            </div>
+            </div>
+            
+            
+            <div class="clearfix"></div>
+            <flurry-chart class="graph_canvas" currentChart="currentChart" from_date="from_date" to_date="to_date" style="height:300px" chartlabel="chartlabel" ></flurry-chart>
+        </div>
+    </div>
+</div>

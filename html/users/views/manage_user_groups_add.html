@@ -1,0 +1,120 @@
+<div ng-controller="manage_user_groups_addCtrl">
+    <div class="clearfix"></div>
+    <div class="alert {{dump.type}}" ng-show="dump.message">{{dump.message}}</div>
+    <div class="grid">
+        <div class="grid-title">
+            <div class="pull-left">
+                <span>Add Group</span>
+                <div class="clearfix"></div>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+        <div class="grid-content overflow">
+            <a href="#/manage_user_groups/" class="btn btn-primary pull-right">
+          		Return to Users Groups
+          	</a>
+            <div class="clear">
+                <!---->
+            </div>
+            <br/>
+            <div class="span8">
+                <div class="form-horizontal">
+                    <div class="row">
+                        <div >
+                            <input type="text" ng-model="group.name" >
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="span3" >
+                            <label>Price</label>
+                            <div>
+                                <input type="number" ng-model="group.price" >
+                            </div>
+                        </div>
+                        <div class=" span3" >
+                            <label>Currency</label>
+                            <div >
+                                 <select ng-model="currency" >
+                                    <option value="USD">USD</option>
+                                    <option value="AED">AED</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class=" span3" >
+                            <label>Period</label>
+                            <div >
+                                <input type="text" ng-model="group.period" >
+                            </div>
+                        </div>
+                        <div class=" span3" >
+                            <label>Unit</label>
+                            <div >
+                                <select ng-model="group.unit" >
+                                    <option value="week">weekly</option>
+                                    <option value="month">Monthly</option>
+                                    <option value="year">Yearly</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="clearfix"></div>
+                    <br/> <br/><br/>
+                    <h5>Permissions</h5>
+                    
+                    <div class="formRow">
+                        <label>Enable</label>
+                        <div class="formRight">
+                            <select multiple="true" ng-model="group.can_view" ng-options="module.module as module.module for module in modules ">
+                                <option value=""></option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="formRow">
+                        <label>Can Add</label>
+                        <div class="formRight">
+                            <select multiple="true" ng-model="group.can_add" ng-options="module.module as module.module for module in modules ">
+                                <option value=""></option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="formRow">
+                        <label>Can Edit</label>
+                        <div class="formRight">
+                            <select multiple="true" ng-model="group.can_edit" ng-options="module.module as module.module for module in modules ">
+                                <option value=""></option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="formRow">
+                        <label>Can Delete</label>
+                        <div class="formRight">
+                            <select multiple="true" ng-model="group.can_delete" ng-options="module.module as module.module for module in modules ">
+                                <option value=""></option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <br/>
+                    <br/>
+                    <div class="formRow">
+                        <label></label>
+                        <div class="formRight">
+                            <span class="btn btn-primary" ng-click="add()">
+                                Add Group
+                            </span>
+                        </div>
+                    </div>
+                    <br/>
+                    <br/>
+                </div>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+    </div>
+</div>

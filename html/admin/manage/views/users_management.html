@@ -1,0 +1,144 @@
+<div ng-controller="users_managementCtrl" ng-show="current_user.is_admin">
+
+	<ul class="breadcrumb">
+        <li>
+            <p>YOU ARE HERE</p>
+        </li> 
+        <li><a href="#" class="active">User Management</a>
+        </li>
+    </ul>
+	<div class="page-title">	
+		<a href="" ng-click="goBack();"><i class="icon-custom-left"></i></a>
+        <h3>User - <span class="semi-bold">Management</span></h3>	
+    </div>
+    <div class="row">
+    	
+	    <div class="col-md-12">
+	        <div class="grid simple ">
+
+	            <div class="grid-body no-border">
+	            	<br/>
+	            	<div ng-show="dump.message" class="alert {{dump.type}}">
+				        <button class="close" ng-click="dump={}"></button>
+				        {{dump.message}}
+				      </div>
+	            	<h3>Manage  <span class="semi-bold">Users</span></h3>
+	            	<br/>
+	            		<div class="row">
+	            			<div class="col-md-4">
+	            				<div >
+	            					<input type="text" ng-change="change();" placeholder="Search by email" ng-model="search_query" class="form-control" />
+	            				</div>
+	            				
+	            				
+	            			</div>
+	            			<!-- <div class="col-md-1">
+	            				<div >
+	            					<a href="" ng-click="search();" class="btn">Search</a>
+	            				</div>
+	            			</div> -->
+	            			
+	            			<div class="col-md-8">
+	            				<div class="pull-right">
+			            			<select style="margin:0px 0px" ng-change="change();" ng-model="searchByPlanID" >
+			            				<option value="">Filter by plan</option>
+			            				<option ng-repeat="plan in plans" value="{{plan._id}}">{{plan.name}}</option>
+			            			</select>
+			            			<!-- <button type="reset" class="btn" ng-click="searchByPlanID='';">Reset</button> -->
+			            		</div>
+	            			</div>
+	            		</div>
+	            		<div class="row">
+	            			
+	            			<div class="col-md-6">
+	            					<div  >
+					                    <pagination items-per-page="limit" max-size="5" boundary-links="true" on-select-page="setPage(page)" total-items="totalItems" page="currentPage" class="pagination-sm" previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;" last-text="&raquo;"></pagination>
+				                    </div>
+	            			</div>
+	            			<div class="col-md-6">&nbsp;</div>
+	            	
+	            		</div>
+	            		
+	                  
+	                    <div class="clearfix"></div>
+	                    <div class="alert" ng-show="users.length==0">Sorry, no entries match your filter</div>
+	                    <table class="table no-more-tables" ng-show="users.length>0">
+	                        <thead>
+	                            <tr>
+
+	                                <th width="70%">Username</th>
+	                               
+	                                <th>Edit</th>
+	                                <th>Password</th>
+	                          
+	                                
+	                            </tr>
+	                        </thead>
+	                        <tbody ng-repeat="user in users" style="border:none">
+	                        	
+	                        	<tr>
+		                            <td class="v-align-middle">
+		                            	<p><h5><a href="#/users_management/edit/{{user._id}}"><b>{{user.username}}</b></a></h5></p>
+										<span class="label">plan: </span>{{match(user)}} <br/>
+										<span class="label">created: </span>{{user._kmd.ect|date:'mediumDate'}} <br/>
+										<span class="label">status: </span><span class="label " ng-class="{'label-default':user.status=='pending','label-primary':user.status=='approved','label-danger':user.status=='canceled'}">{{user.status}}</span>
+		                            </td>
+		                           
+		                            
+		                           
+		                            <td class="v-align-middle">
+		                            	<span class="btn-group">
+		                            		<a href="" class="btn" ng-click="setUserID(user._id);setUsername(user.username);">Login</a>
+		                            	<a ng-href="#/users_management/edit/{{user._id}}" class="btn btn-info"><i class="fa fa-edit"></i></a>
+		                            	<span ng-click="confirm_delete=true" class="btn btn-danger"><i class="fa fa-times"></i></span>
+		                            	</span>
+		                            </td>
+		                            <td> <span ng-click="confirm_reset=true"  class="btn btn-success">Reset</span> </td>
+		                            
+	                            </tr>
+	                            <tr ng-show="confirm_delete">
+	                            	<td colspan="7">
+	                            		<div class="alert alert-error">
+						                  <button class="close" ng-click="confirm_delete=false;"></button>
+						                  Please confirm delete process.
+						                  <button ng-click="delete($index);confirm_delete=false;" class="btn btn-danger btn-sm btn-small pull-right" type="button">Confirm Delete</button>
+						                </div>
+	                            	</td>
+	                            </tr>
+	                            <tr ng-show="confirm_reset">
+	                            	<td colspan="7">
+	                            		<div class="alert ">
+						                  <button class="close" ng-click="confirm_reset=false;" ></button>
+						                  Please confirm reset process.
+						                  <button ng-click="reset($index);confirm_reset=false;" class="btn btn-danger btn-sm btn-small pull-right" type="button">Confirm Reset Password</button>
+						                </div>
+	                            	</td>
+	                            </tr>
+	                            
+	                        </tbody>
+	                    </table>
+	                    
+	                    <div  >
+		                    <pagination  max-size="5" items-per-page="limit" boundary-links="true" on-select-page="setPage(page)" total-items="totalItems" page="currentPage" class="pagination-sm" previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;" last-text="&raquo;"></pagination>
+	                    </div>
+	                    <div class="clearfix"></div>
+	            </div>
+	        </div>
+	    </div>
+	</div>
+</div>
+<div ng-controller="users_managementCtrl" ng-show="!current_user.is_admin">
+      <div class="row">
+        <div class="col-md-12">
+            <div class="grid simple ">
+                <div class="grid-body no-border">
+                  <br/>
+                  <br/>
+                  <div class="alert alert-error">
+              You don't have permission to view this page {{current_user.username}}
+            </div>
+              </div>
+          </div>
+      </div>
+    </div>
+</div>

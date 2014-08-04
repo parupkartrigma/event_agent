@@ -1,0 +1,96 @@
+<div ng-controller="pages_editCtrl">
+    <div class="clearfix"></div>
+    <div class="alert {{dump.type}}" ng-show="dump.message">{{dump.message}}</div>
+    <div class="grid">
+        <div class="grid-title">
+            <div class="pull-left">
+                <span>Edit Page</span>
+                <div class="clearfix"></div>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+        <div class="grid-content overflow">
+            <a href="#/pages/" class="btn btn-primary pull-right">
+                Return to Pages Management
+            </a>
+            <div class="clear">
+                <!---->
+            </div>
+            <br/>
+            <div class="span4">
+                <div class="form-horizontal">
+                    <div class="formRow">
+                        <label>Name</label>
+                        <div class="formRight">
+                            <input type="text" ng-model="page.name" class="span4">
+                        </div>
+                    </div>
+                    <div class="formRow">
+                        <label>First Page</label>
+                        <div class="formRight">
+                            <input type="text" ng-model="page.first_page" class="span4">
+                        </div>
+                    </div>
+                    <div class="formRow">
+                        <label>Front Image</label>
+                        <div class="formRight">
+                            <input type="text" ng-model="page.front_image" class="span4">
+                        </div>
+                    </div>
+                    
+                    <div class="formRow">
+                        <label>Require Login</label>
+                        <div class="formRight">
+                            <input type="text" ng-model="page.require_login" class="span4">
+                        </div>
+                    </div>
+                    <div class="formRow">
+                        <label>Short Title</label>
+                        <div class="formRight">
+                            <input type="text" ng-model="page.short_title" class="span4">
+                        </div>
+                    </div>
+                    <div class="formRow">
+                        <label>Sort</label>
+                        <div class="formRight">
+                            <input type="text" ng-model="page.sort" class="span4">
+                        </div>
+                    </div>
+                    <div class="formRow">
+                        <label>Title</label>
+                        <div class="formRight">
+                            <input type="text" ng-model="page.title" class="span4">
+                        </div>
+                    </div>
+                    <div class="formRow">
+                        <label>Page Type</label>
+                        <div class="formRight">
+                            <input type="text" ng-model="page.page_type" class="span4">
+                        </div>
+                    </div>
+                   
+                    <div class="formRow">
+                        <label>Content</label>
+                        <div class="formRight">
+                            <textarea ng-model="page.content" style="height:150px" class="span4"></textarea>
+                        </div>
+                    </div>
+                    
+                    <br/>
+                    <br/>
+                    <div class="formRow">
+                        <label></label>
+                        <div class="formRight">
+                            <span class="btn btn-primary" ng-click="edit()">
+                                Update Page
+                            </span>
+                        </div>
+                    </div>
+                    <br/>
+                    <br/>
+                </div>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+    </div>
+</div>

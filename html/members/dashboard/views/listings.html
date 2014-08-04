@@ -1,0 +1,108 @@
+<div ng-controller="listings"  ng-show="current_user.plan.unlimited_listings">
+
+		<ul class="breadcrumb">
+	        <li>
+	            <p>YOU ARE HERE</p>
+	        </li> 
+	        <li><a href="#/listings" class="active">Lisitings</a>
+	        </li>
+	    </ul>
+		<div class="page-title">	
+			<a href="" ng-click="goBack();"><i class="icon-custom-left"></i></a>
+	        <h3>Dashboard</h3>	
+	    </div>
+	    <div class="row">
+	    	
+		    <div class="col-md-12">
+		        <div class="grid simple ">
+
+		            <div class="grid-body no-border">
+		            	<br/>
+		            	
+		            	<h3>General information</h3>
+		            	<br/>
+		            	<div ng-show="dump.message" class="alert {{dump.type}}">
+					        <button class="close" ng-click="dump={}"></button>
+					        {{dump.message}}
+					      </div>
+					    <form name="listings_form" id="listings_form" action="" method="post" ng-submit="save_page();">
+		                 	<div class="row form-row  xs-m-l-10 xs-m-r-10">
+		                      <div class="col-md-6">
+		                      	
+		                      	<select ng-model="selected_category" class="form-control"  >
+		                      		<option ng-repeat="category_item in categories track by $index" value="{{category_item.name}}">{{category_item.name}}</option>
+		                      	</select>
+		                      	<div style="text-align:center;margin-top:20px">
+									<a  href="" ng-click="save_category();" class="btn  btn-success">Add Category</a>
+								</div>
+								<label for="">Keywords</label>
+								<textarea ng-model="page.keywords" class="form-control"></textarea>
+								<div class="label">Comma Seperated keywords</div>
+								<div style="text-align:center;margin-top:20px">
+									<a  href="" ng-click="save_page();" class="btn  btn-success">Save</a>
+								</div>
+		                      </div>
+		                      <div class="col-md-6">
+		                      	<div class="notification-messages info">
+									<h5>Your Categories</h5>
+									<table class="table no-more-tables">
+				                        <thead>
+				                            <tr>
+				                                <th style="width:70%">Category</th>
+				                                <th style="width:15%">Edit</th>
+				                            </tr>
+				                        </thead>
+				                        <tbody ng-repeat="category_item in page.categories track by $index" style="border:none">
+				                        	
+				                        	<tr>
+					                            <td class="v-align-middle">{{category_item}}</td>
+					                          
+					                            <td class="v-align-middle">
+					                            	<span class="btn-group">
+					                            	
+					                            	<span ng-click="confirm_delete=true" class="btn btn-danger"><i class="fa fa-times"></i></span>
+					                            	</span>
+					                            </td>
+					                            
+					                            
+				                            </tr>
+				                            <tr ng-show="confirm_delete">
+				                            	<td colspan="4">
+				                            		<div class="alert alert-error">
+									                  <button class="close" ng-click="confirm_delete=false;"></button>
+									                  Please confirm delete process.
+									                  <button ng-click="delete($index);confirm_delete=false;" class="btn btn-danger btn-sm btn-small pull-right" type="button">Confirm Delete</button>
+									                </div>
+				                            	</td>
+				                            </tr>
+				                            
+				                        </tbody>
+				                    </table>
+		                      	</div>
+		                      </div>
+		                      
+		                    </div> 
+							<br/>
+							
+		        		</form>
+		        </div>
+		    </div>
+		</div>
+	</div>
+</div>
+
+<div ng-controller="listings" ng-show="!current_user.plan.unlimited_listings" >
+	    <div class="row">
+		    <div class="col-md-12">
+		        <div class="grid simple ">
+		            <div class="grid-body no-border">
+		            	<br/>
+		            	<br/>
+		            	<!-- <div class="alert alert-error">
+							You don't have permission to view this page {{current_user.username}}
+						</div> -->
+		        	</div>
+		    	</div>
+			</div>
+		</div>
+</div>

@@ -1,0 +1,60 @@
+<div ng-controller="page_types_editCtrl">
+    <div class="clearfix"></div>
+    <div class="alert {{dump.type}}" ng-show="dump.message">{{dump.message}}</div>
+    <div class="grid">
+        <div class="grid-title">
+            <div class="pull-left">
+                <span>Edit Page Type</span>
+                <div class="clearfix"></div>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+        <div class="grid-content overflow">
+            <a href="#/page_types/" class="btn btn-primary pull-right">
+                Return to Page Types Management
+            </a>
+            <div class="clear">
+                <!---->
+            </div>
+            <br/>
+            <div class="span4">
+                <div class="form-horizontal">
+                    <div class="formRow">
+                        <label>Name</label>
+                        <div class="formRight">
+                            <input type="text" ng-model="type.name" class="span4">
+                        </div>
+                    </div>
+                    <div class="formRow">
+                        <label>Require</label>
+                        <div class="formRight">
+                            <select ng-model="type.require" ng-options="item as item for item in require" class="span4">
+                                <option value="">Require</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="formRow">
+                        <label>Description</label>
+                        <div class="formRight">
+                            <textarea ng-model="type.description" style="height:150px" class="span4"></textarea>
+                        </div>
+                    </div>
+                    
+                    <br/>
+                    <br/>
+                    <div class="formRow">
+                        <label></label>
+                        <div class="formRight">
+                            <span class="btn btn-primary" ng-click="edit()">
+                               Update Type
+                            </span>
+                        </div>
+                    </div>
+                    <br/>
+                    <br/>
+                </div>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+    </div>
+</div>

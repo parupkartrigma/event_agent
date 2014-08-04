@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html ng-app="bones">
+<head>
+<meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+<meta charset="utf-8" />
+<title>Event Agent</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+<meta content="" name="description" />
+<meta content="" name="author" />
+<!-- BEGIN CORE CSS FRAMEWORK -->
+<link href="plugins/pace/pace-theme-flash.css" rel="stylesheet" type="text/css" media="screen"/>
+<link href="plugins/boostrapv3/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+<link href="plugins/boostrapv3/css/bootstrap-theme.min.css" rel="stylesheet" type="text/css"/>
+<link href="plugins/font-awesome/css/font-awesome.css" rel="stylesheet" type="text/css"/>
+<link href="css/animate.min.css" rel="stylesheet" type="text/css"/>
+<!-- END CORE CSS FRAMEWORK -->
+<!-- BEGIN CSS TEMPLATE -->
+<link href="css/style.css" rel="stylesheet" type="text/css"/>
+<link href="css/responsive.css" rel="stylesheet" type="text/css"/>
+<link href="css/magic_space.css" rel="stylesheet" type="text/css"/>
+<link href="css/custom-icon-set.css" rel="stylesheet" type="text/css"/>
+<!-- END CSS TEMPLATE -->
+</head>
+<!-- END HEAD -->
+<!-- BEGIN BODY -->
+<body class="error-body no-top lazy"  data-original="img/work.jpg"  style="background-image: url('img/work.jpg')"> 
+<div class="container" style="overflow:hidden">
+  <div class="row login-container animated fadeInUp">  
+        <div class="col-md-7 col-md-offset-2 tiles white no-padding">
+     <div class="p-t-30 p-l-40 p-b-20 xs-p-t-10 xs-p-l-10 xs-p-b-10"> 
+          <h2 class="normal">Sign in to event agent</h2>
+          
+          <p class="p-b-20">OR Sign up Now! for event agent accounts..</p>
+      <button type="button" class="btn btn-primary btn-cons" id="login_toggle">Login</button> or&nbsp;&nbsp;<button type="button" class="btn btn-info btn-cons" id="register_toggle"> Create an account</button>
+       
+        </div>
+    <div class="tiles grey p-t-20 p-b-20 text-black">
+      <div ng-show="registered_successfully" class="row form-row m-l-20 m-r-20 xs-m-l-10 xs-m-r-10">
+        <div class="col-md-12 col-sm-12">
+          <div class="alert alert-success">
+            Your registration successfully created. Please login to proceed to dashboard.
+          </div>
+        </div>
+      </div>
+      <form ng-show="!selectPlan||registered_successfully" id="frm_login" class="animated fadeIn">
+        
+                    <div class="row form-row m-l-20 m-r-20 xs-m-l-10 xs-m-r-10">
+                      <div class="col-md-12 col-sm-6">
+                        <div ng-show="dump.message" class="alert {{dump.type}}">{{dump.message}}</div>
+                      </div>
+                       <div class="col-md-12 col-sm-12" ng-show="show_forget" >
+
+                        <input ng-model="email" id="login_email" type="text"  class="form-control" placeholder="Please enter your account email address.">
+                      </div>
+                      <div class="col-md-6 col-sm-6" ng-show="!show_forget" ng-class="{'col-md-12':show_forget,'col-sm-12':show_forget}">
+
+                        <input ng-model="username" id="login_username" type="text"  class="form-control" placeholder="Username">
+                      </div>
+                      <div class="col-md-6 col-sm-6" ng-show="!show_forget">
+                        <input ng-model="password" id="login_pass" type="password"  class="form-control" placeholder="Password">
+                      </div>
+                    </div>
+        <div class="row p-t-10 m-l-20 m-r-20 xs-m-l-10 xs-m-r-10">
+          <div class="control-group  col-md-10">
+          <div class="checkbox checkbox check-success"> <a ng-show="!show_forget" ng-click="show_forget=true;" href="">Trouble login in?</a><a ng-show="show_forget" ng-click="show_forget=false;" href="">Return to login</a>&nbsp;&nbsp;
+            <input type="checkbox" id="checkbox1" ng-show="!show_forget" value="1">
+            <label for="checkbox1" ng-show="!show_forget">Keep me reminded </label>
+          </div>
+          </div>
+          </div>
+          <div style="text-align:center"><a ng-show="!show_forget" ng-click="login()" href="" class="btn  btn-success">Process to dashboard</a><a ng-show="show_forget" ng-click="forget()" href="" class="btn  btn-success">Reset Password</a></div>
+          
+        </form>
+      <form name="signup_form" ng-show="!selectPlan" ng-submit="signup()" id="frm_register" class="animated fadeIn" style="display:none">
+                    <div class="row form-row m-l-20 m-r-20 xs-m-l-10 xs-m-r-10">
+                      <div class="col-md-6 col-sm-6">
+                        <input ng-model="user.fullname"  required type="text"  class="form-control" placeholder="Full Name">
+                      </div>
+                      <div class="col-md-6 col-sm-6">
+                        <input ng-model="user.company_name" required  type="text"  class="form-control" placeholder="Company Name">
+                      </div>
+                    </div>  
+                    <div class="row form-row m-l-20 m-r-20 xs-m-l-10 xs-m-r-10">
+                      <div class="col-md-12">
+                        <input ng-model="user.email"  type="email"  class="form-control" placeholder="Email Address">
+                      </div>
+                    </div>  
+                    <div class="row form-row m-l-20 m-r-20 xs-m-l-10 xs-m-r-10">
+                      <div class="col-md-12 col-sm-12">
+                        <input ng-model="user.address" required  type="text"  class="form-control" placeholder="Address">
+                      </div>
+                      <div class="col-md-12 col-sm-12">
+                        <input ng-model="user.second_address" type="text"  class="form-control" placeholder="Second Address">
+                      </div>
+                    </div> 
+                    <div class="row form-row m-l-20 m-r-20 xs-m-l-10 xs-m-r-10">
+                      <div class="col-md-4 col-sm-4">
+                        <input ng-model="user.suburb"  required type="text"  class="form-control" placeholder="Suburb">
+                      </div>
+                      <div class="col-md-4 col-sm-4">
+                        <input ng-model="user.postcode" required type="text"  class="form-control" placeholder="Postcode"/>
+                      </div>
+                      <div class="col-md-4 col-sm-4">
+                        <input ng-model="user.country" required type="text"  class="form-control" placeholder="Country"/>
+                      </div>
+                    </div>
+                    <div class="row form-row m-l-20 m-r-20 xs-m-l-10 xs-m-r-10">
+                      <div class="col-md-6 col-sm-6">
+                        <input ng-model="user.work_phone" required ng-pattern="/^[0-9]+$/" ng-minlength="10" ng-maxlength="20"  type="text"  class="form-control" placeholder="Work Phone"/>
+                      </div>
+                      <div class="col-md-6 col-sm-6">
+                        <input ng-model="user.mobile" required ng-pattern="/^[0-9]+$/" ng-minlength="10" ng-maxlength="20" type="text"  class="form-control" placeholder="Mobile"/>
+                      </div>
+                    </div> 
+
+                    <div class="row form-row m-l-20 m-r-20 xs-m-l-10 xs-m-r-10">
+                      <div class="col-md-12 ">
+                        <input ng-model="user.username" required  type="text"  class="form-control" placeholder="Username"/>
+                      </div>
+                    </div>  
+                    <div class="row form-row m-l-20 m-r-20 xs-m-l-10 xs-m-r-10">
+                      <div class="col-md-12 ">
+                        <input ng-model="user.password" required type="password"  class="form-control" placeholder="Password">
+                      </div>
+                    </div>
+                    <br/>
+                    <!---->
+
+                    
+                    <div class="row form-row m-l-20 m-r-20 xs-m-l-10 xs-m-r-10">
+                      <div class="col-md-12 ">
+                      <div class="checkbox check-default">
+                        <input id="terms" ng-model="terms" type="checkbox"  >
+                        <label for="terms">Agree to terms and conditions</label>
+                      </div>
+                    </div>
+                    </div>
+                   <div style="text-align:center;margin-top:20px"><input ng-disabled="!terms||signup_form.$invalid"  type="submit" value="Signup" class="btn  btn-success"></div>       
+      </form>
+      <form ng-submit="selectYourPlan()" name="select_plan_form"  ng-show="selectPlan&&!registered_successfully" ng-init="user={};">
+
+        <div class="row form-row m-l-20 m-r-20 xs-m-l-10 xs-m-r-10">
+          <div class="alert alert-danger">Your Account created successfully but still inactive, Please select your plan to proceed!</div>
+                      <div class="col-md-6 " ng-init="user.free_trail='true'">
+                        <div class="radio radio-success">
+                          <input id="yes" type="radio" name="type" required ng-model="user.free_trail" value="true" ng-checked="user.free_trail=='true'">
+                          <label for="yes">Free Trail</label>
+                          <input id="no" type="radio" name="type" required ng-model="user.free_trail" value="false" ng-checked="user.free_trail=='false'"  >
+                          <label for="no">Paid</label>
+                        </div>
+                        <div class="col-md-12 " ng-show="user.free_trail=='false'" >
+                          <div ng-repeat="plan in plans">
+                            <div class="col-md-5 ">
+                              <div class="radio radio-success" >
+                                <input id="{{plan.name}}" name="userplan" ng-init="plan.selected='Monthly';plan.selected_price=plan.price" required type="radio" ng-model="user.plan" value="{{plan}}">
+                                <label for="{{plan.name}}">{{plan.name}}</label>
+                              </div>
+                            </div>  
+                             <div class="col-md-7 ">
+                          <a class="dropdown-toggle btn-demo-space" data-toggle="dropdown" href="#"> {{plan.selected}} {{plan.selected_price|currency}}<span class="caret"></span> </a>
+                              <ul class="dropdown-menu">
+                                <li><a ng-click="plan.selected='Monthly';plan.selected_price=plan.price" href="#">Monthly {{plan.price|currency}}</a></li>
+                                <li><a ng-click="plan.selected='Yearly';plan.selected_price=plan.yearly" href="#">Yearly {{plan.yearly|currency}}</a></li>
+                              </ul>
+                            </div>
+                              <div style="clear:both"><!--dd--></div>
+                              </div>
+                        </div>
+                      </div>
+
+                      <div class="col-md-6 " ng-show="user.free_trail=='false'" ng-init="user.card={}">
+                          <div class="col-md-12 col-sm-12">
+                            <input ng-model="user.card.number" name="number"  type="text"  class="form-control" placeholder="Card Number" required ng-pattern="/^[0-9]+$/" ng-minlength="15" ng-maxlength="19"/>
+                          </div>
+                          <div class="col-md-6 col-sm-6">
+                            <input ng-model="user.card.cvc" type="text"  name="cvc"  class="form-control" placeholder="CVC" required ng-pattern="/^[0-9]+$/" ng-minlength="3" ng-maxlength="4" />
+                          </div>
+                          <div class="col-md-6 col-sm-6">
+                            <input ng-model="user.card.expire_date" name="expire_date"  required ng-pattern="/^[0-9]+\/[0-9]+$/" ng-minlength="7" ng-maxlength="7" type="text"  class="form-control" placeholder="MM/YYYY"
+                            />
+                          </div>
+                      </div>
+
+                    </div>
+                    <div style="text-align:center;margin-top:20px"><input ng-disabled="select_plan_form.$invalid"  type="submit" value="Subscribe" class="btn  btn-success"></div>  
+      </form>
+      
+    </div>   
+      </div>   
+  </div>
+</div>
+<!-- END CONTAINER -->
+<!-- BEGIN CORE JS FRAMEWORK-->
+<script type="text/javascript" src="https://js.stripe.com/v2/"></script>
+<script src="js/angular.js" type="text/javascript"></script>
+<script src="js/angular-resource.js" type="text/javascript"></script>
+<script src="js/kinvey.js" type="text/javascript"></script>
+<script src="js/app.js" type="text/javascript"></script>
+<script src="plugins/jquery-1.8.3.min.js" type="text/javascript"></script>
+<script src="plugins/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
+<script src="plugins/pace/pace.min.js" type="text/javascript"></script>
+<script src="plugins/jquery-validation/js/jquery.validate.min.js" type="text/javascript"></script>
+<script src="plugins/jquery-lazyload/jquery.lazyload.min.js" type="text/javascript"></script>
+<script src="js/login_v2.js" type="text/javascript"></script>
+<!-- BEGIN CORE TEMPLATE JS -->
+<!-- END CORE TEMPLATE JS -->
+</body>
+
+
+
+</html>

@@ -1,0 +1,73 @@
+<div ng-controller="usersCtrl">
+    <div class="clearfix"></div>
+    <div class="alert {{dump.type}}" ng-show="dump.message">{{dump.message}}</div>
+    <div class="grid">
+        <div class="grid-title">
+            <div class="pull-left">
+                <span>Signup Settings</span>
+                <div class="clearfix"></div>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+        <div class="grid-content overflow">
+            <a href="#/users/add-signup-route/" class="btn btn-primary pull-right">
+              Add New Signup Route
+            </a>
+            <div class="clear">
+                <!---->
+            </div>
+            <br/>
+            <div class="alert" ng-show="signup_routes.length==0">
+                No items matching selected criteria.
+            </div>
+            <table class="table table-bordered table-mod-2">
+                <thead>
+                    <tr>
+                        <th width="100">Auto Approve</th>
+                        <th>Group</th>
+                        <th>Public URL</th>
+                        <th>Custom CSS Rules</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody ng-repeat="route in signup_routes">
+                    <tr>
+                        <td class="center">
+                            <input ng-change="change_auto_approve(route,auto_approve)" class="checkbox" type="checkbox" ng-checked="route.auto_approve" ng-model="auto_approve" />
+                        </td>
+                        <td>
+                            <select ng-change="change_group(route,group_id)" ng-model="group_id">
+                                <option ng-selected="route.group_id==group.name" ng-repeat="group in groups" value="{{group.name}}">{{group.name}}</option>
+                            </select>
+                        </td>
+                        <td> <a href="signup.html#/form/{{route._id}}" >{{route._id}}</a></td>
+                        <td>{{route.custom_css}}</td>
+                        <td>
+                            <div class="btn-group">
+                                <a href="#/users/edit-signup-route/{{route._id}}" class="btn">
+                      Edit
+                    </a>
+                                <span ng-click="delete_confirm=true" class="btn btn-danger">
+                                    Delete
+                                </span>
+                            </div>
+                        </td>
+
+                    </tr>
+                    <tr ng-show="delete_confirm">
+                        <td colspan="5">
+                            <div class="alert">
+                                Are you sure you want to delete this item?
+                                <span class="btn-group">
+                                    <span ng-click="delete($index)" class="btn btn-danger">Yes, sure</span>
+                                    <span ng-click="delete_confirm=false;" class="btn btn-default">Cancel</span>
+                                </span>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="clearfix"></div>
+        </div>
+    </div>
+</div>

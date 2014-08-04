@@ -1,0 +1,101 @@
+<div ng-controller="social_links" ng-show="current_user.plan.social_links||current_user.plan.website_link">
+
+	<ul class="breadcrumb">
+        <li>
+            <p>YOU ARE HERE</p>
+        </li> 
+        <li><a href="#/social-links" class="active">Website & Social Media Links</a>
+        </li>
+    </ul>
+	<div class="page-title">	
+		<a href="" ng-click="goBack();"><i class="icon-custom-left"></i></a>
+        <h3>Dashboard</h3>	
+    </div>
+    <div class="row">
+    	
+	    <div class="col-md-12">
+	        <div class="grid simple ">
+
+	            <div class="grid-body no-border">
+	            	<br/>
+	            	
+	            	<h3>Website & Social Media <span class="semi-bold">Links</span></h3>
+	            	<br/>
+	            	<div ng-show="dump.message" class="alert {{dump.type}}">
+				        <button class="close" ng-click="dump={}"></button>
+				        {{dump.message}}
+				      </div>
+				    <form name="social_links_form" action="" method="post" ng-submit="save_page();">
+	                  <div class="row form-row ">
+	              <div class="row form-row  xs-m-l-10 xs-m-r-10" ng-show="current_user.plan.website_link">
+	                    	
+	                      <div class="col-md-12">
+	                      	<label >Website URL</label>
+							<div class="input-with-icon right">
+							    <i class="fa  fa-external-link"></i>
+							    
+							    <input ng-model="page.website"  type="text"  class="form-control" placeholder="  Website URL "/>
+							</div>
+	                      </div>
+	                    </div> 
+	                  	
+	                    <div class="row form-row  xs-m-l-10 xs-m-r-10" ng-show="current_user.plan.social_links">
+
+	                      <div class="col-md-12">
+	                      	<label >Facebook Page URL</label>
+							<div class="input-with-icon right">
+							    <i class="fa fa-facebook"></i>
+							    
+							    <input ng-model="page.facebook_url"  type="text"  class="form-control" placeholder="  Facebook Page URL "/>
+							</div>
+	                      </div>
+	                    </div> 
+	                     <div class="row form-row  xs-m-l-10 xs-m-r-10" ng-show="current_user.plan.social_links">
+	                      <div class="col-md-12">
+	                      	 <label >Twitter Page URL</label>
+	                      	<div class="input-with-icon right">
+							    <i class="fa fa-twitter"></i>
+
+							    <input ng-model="page.twitter_url"  type="text"  class="form-control" placeholder="  Twitter Page URL"/>
+							</div>
+	                      </div>
+	                    </div> 
+	                     <div class="row form-row  xs-m-l-10 xs-m-r-10" ng-show="current_user.plan.social_links">
+	                      <div class="col-md-12">
+	                      	<label >Google+ Page URL</label>
+	                      	<div class="input-with-icon right">
+							    <i class="fa fa-google-plus"></i>
+							    <input ng-model="page.google_plus_url"  type="text"  class="form-control" placeholder="  Google+ Page URL"/>
+							</div>
+	                      </div>
+	                    </div> 
+						<div style="text-align:center;margin-top:20px">
+							<button class="btn  btn-success" type="submit" ng-disabled="company_info_form.$invalid"><i ng-show="loading" class="fa fa-spinner fa-spin"></i> Save</button>
+						</div>
+                   
+                    <br/>
+                    
+	            
+	                    
+	            </div>
+	        </form>
+	        </div>
+	    </div>
+	</div>
+</div>
+</div>
+<div ng-controller="social_links" ng-hide="current_user.plan.social_links||current_user.plan.website_link">
+	    <div class="row">
+		    <div class="col-md-12">
+		        <div class="grid simple ">
+		            <div class="grid-body no-border">
+		            	<br/>
+		            	<br/>
+		            	<!-- <div class="alert alert-error">
+							You don't have permission to view this page {{current_user.username}}
+						</div> -->
+		        	</div>
+		    	</div>
+			</div>
+		</div>
+</div>

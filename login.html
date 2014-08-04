@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html >
+<head>
+<meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+<meta charset="utf-8" />
+<title>EventAgent</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+<meta content="" name="description" />
+<meta content="" name="author" />
+<!-- BEGIN CORE CSS FRAMEWORK -->
+<link href="plugins/pace/pace-theme-flash.css" rel="stylesheet" type="text/css" media="screen"/>
+<link href="plugins/boostrapv3/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+<link href="plugins/boostrapv3/css/bootstrap-theme.min.css" rel="stylesheet" type="text/css"/>
+<link href="plugins/font-awesome/css/font-awesome.css" rel="stylesheet" type="text/css"/>
+<link href="css/animate.min.css" rel="stylesheet" type="text/css"/>
+<!-- END CORE CSS FRAMEWORK -->
+<!-- BEGIN CSS TEMPLATE -->
+<link href="css/style.css" rel="stylesheet" type="text/css"/>
+<link href="css/responsive.css" rel="stylesheet" type="text/css"/>
+<link href="css/magic_space.css" rel="stylesheet" type="text/css"/>
+<link href="css/custom-icon-set.css" rel="stylesheet" type="text/css"/>
+<link rel="shortcut icon" href="img/favicon.ico"/>
+<!-- END CSS TEMPLATE -->
+</head>
+<!-- END HEAD -->
+<!-- BEGIN BODY -->
+<body class="error-body no-top lazy"    style="background-image: url('img/image011.jpg');background-size:cover;background-repeat:no-repeat;background-attachment:fixed;display:none"> 
+<div class="container" style="overflow:hidden">
+  <div class="animated fadeInUp">  
+        <div class="login_form_holder tiles white no-padding">
+     <div class="p-t-30 p-l-40 p-b-20 xs-p-t-10 xs-p-l-10 xs-p-b-10"> 
+          <h2 class="normal">Sign in to EventAgent</h2>
+          
+          <p class="p-b-20">OR Sign up Now! for EventAgent accounts..</p>
+      <button type="button" class="btn btn-primary btn-cons" ng-click="show_forget=false;" id="login_toggle">Login</button> or&nbsp;&nbsp;<button type="button" class="btn btn-info btn-cons" id="register_toggle"> Create an account</button>
+       
+        </div>
+    <div class="tiles grey p-t-20 p-b-20 text-black">
+      <div ng-show="registered_successfully" class="row form-row m-l-20 m-r-20 xs-m-l-10 xs-m-r-10">
+        <div class="col-md-12 col-sm-12">
+          <div class="alert alert-success">
+            Your registration successfully created. Please login to proceed to dashboard.
+          </div>
+        </div>
+      </div>
+      <div class="row form-row m-l-20 m-r-20 xs-m-l-10 xs-m-r-10">
+          <div class="col-md-12 col-sm-6">
+           <div ng-show="dump.message" class="alert {{dump.type}}">{{dump.message}}</div>
+          </div>
+       
+     </div>
+      <form ng-show="!selectPlan||registered_successfully" id="frm_login" class="animated fadeIn">
+        
+                    <div class="row form-row m-l-20 m-r-20 xs-m-l-10 xs-m-r-10">
+                      <div class="col-md-12 col-sm-6">
+                       
+                      </div>
+                       <div class="col-md-12 col-sm-12" ng-show="show_forget" >
+
+                        <input ng-model="forget_username" id="forget_username" type="text"  class="form-control" placeholder="Please enter your account username.">
+                      </div>
+                      <div class="col-md-6 col-sm-6" ng-show="!show_forget" ng-class="{'col-md-12':show_forget,'col-sm-12':show_forget}">
+
+                        <input ng-model="username" id="login_username" type="text"  class="form-control" placeholder="Username">
+                      </div>
+                      <div class="col-md-6 col-sm-6" ng-show="!show_forget">
+                        <input ng-model="password" id="login_pass" type="password"  class="form-control" placeholder="Password">
+                      </div>
+                    </div>
+        <div class="row p-t-10 m-l-20 m-r-20 xs-m-l-10 xs-m-r-10">
+          <div class="control-group  col-md-10">
+          <div class="checkbox checkbox check-success"> <a ng-show="!show_forget" ng-click="show_forget=true;" href="">Trouble logging in?</a><a ng-show="show_forget" ng-click="show_forget=false;" href="">Return to login</a>&nbsp;&nbsp;
+            <input type="checkbox" id="checkbox1" ng-show="!show_forget" value="1">
+            <label for="checkbox1" ng-show="!show_forget">Remember me </label>
+          </div>
+          </div>
+          </div>
+          <div style="text-align:center"><a ng-show="!show_forget" ng-click="login()" href="" class="btn  btn-success"><i ng-show="loading" class="fa fa-spinner fa-spin"></i> Proceed to dashboard</a><a ng-show="show_forget" ng-click="forget()" href="" class="btn  btn-success"><i ng-show="loading" class="fa fa-spinner fa-spin"></i> Reset Password</a></div>
+          
+        </form>
+      <form name="signup_form" ng-show="!selectPlan" ng-submit="signup()" id="frm_register" class="animated fadeIn" style="display:none">
+                    <div class="row form-row m-l-20 m-r-20 xs-m-l-10 xs-m-r-10">
+                      <div class="col-md-6 col-sm-6">
+                        <label>Full Name</label>
+                        <input ng-model="user.fullname" name="fullname"  required type="text"  class="form-control" placeholder="Full Name"/>
+                        <span  class="error" ng-show="signup_form.fullname.$dirty && signup_form.fullname.$invalid">
+                          <span class="error" ng-show="signup_form.fullname.$error.required">
+                              Your full name is required.
+                          </span>
+                        </span><br/>
+                      </div>
+                      <div class="col-md-6 col-sm-6">
+                        <label>Company Name</label>
+                        <input ng-model="page.company_name" name="company_name" required  type="text"  class="form-control" placeholder="Company Name"/>
+                        <span  class="error" ng-show="signup_form.company_name.$dirty && signup_form.company_name.$invalid">
+                          <span class="error" ng-show="signup_form.company_name.$error.required">
+                                Your company name is required.
+                          </span>
+                        </span><br/>
+                      </div>
+                    </div>  
+                    <div class="row form-row m-l-20 m-r-20 xs-m-l-10 xs-m-r-10">
+                      <div class="col-md-12">
+                        <label>Email Address</label>
+                        <input ng-model="user.email"  type="email" name="email"  class="form-control" placeholder="Email Address"/>
+                        <span  class="error" ng-show="signup_form.email.$dirty && signup_form.email.$invalid">
+                        <span class="error" ng-show="signup_form.email.$error.required">
+                              Your email address is required.
+                        </span>
+                        <span class="error" ng-show="signup_form.email.$error.email">
+                              That is not a valid email. Please input a valid email.
+                        </span>
+                        </span><br/>
+                      </div>
+                    </div>  
+                    <div class="row form-row m-l-20 m-r-20 xs-m-l-10 xs-m-r-10">
+                      <div class="col-md-12 col-sm-12">
+                        <label>Address</label>
+                        <input ng-model="page.address" required name="address" type="text"  class="form-control" placeholder="Address"/>
+                        <span  class="error" ng-show="signup_form.address.$dirty && signup_form.address.$invalid">
+                        <span class="error" ng-show="signup_form.address.$error.required">
+                              Your address is required.
+                        </span>
+                      </span><br/>
+                      </div>
+                      <div class="col-md-6 col-sm-6">
+                        <label>Second Address</label>
+                        <input ng-model="page.second_address" type="text"  class="form-control" placeholder="Second Address">
+                      </div>
+                      <div class="col-md-6 col-sm-6">
+                        <label>Suburb</label>
+                        <input ng-model="page.suburb" name="suburb" required type="text"  class="form-control" placeholder="Suburb"/>
+                        <span  class="error" ng-show="signup_form.suburb.$dirty && signup_form.suburb.$invalid">
+                        <span class="error" ng-show="signup_form.suburb.$error.required">
+                              Your suburb is required.
+                        </span>
+                      </span><br/>
+                      </div>
+                    </div> 
+                    <div class="row form-row m-l-20 m-r-20 xs-m-l-10 xs-m-r-10">
+                      
+                      <div class="col-md-4 col-sm-4">
+                        <label>State</label>
+                        <input ng-model="page.state" name="state" required type="text"  class="form-control" placeholder="State"/>
+                        <span  class="error" ng-show="signup_form.state.$dirty && signup_form.state.$invalid">
+                        <span class="error" ng-show="signup_form.state.$error.required">
+                              Your state is required.
+                        </span>
+                      </span><br/>
+                      </div>
+                      <div class="col-md-4 col-sm-4">
+                        <label>Postcode</label>
+                        <input ng-model="page.postcode" name="postcode" required type="text"  class="form-control" placeholder="Postcode"/>
+                        <span  class="error" ng-show="signup_form.postcode.$dirty && signup_form.postcode.$invalid">
+                        <span class="error" ng-show="signup_form.postcode.$error.required">
+                              Your postcode is required.
+                        </span>
+                      </span><br/>
+                      </div>
+                      <div class="col-md-4 col-sm-4">
+                        <label>Country</label>
+                        <input ng-model="page.country" name="country" required type="text"  class="form-control" placeholder="Country"/>
+                        <span  class="error" ng-show="signup_form.country.$dirty && signup_form.country.$invalid">
+                        <span class="error" ng-show="signup_form.country.$error.required">
+                              Your country is required.
+                        </span>
+                      </span><br/>
+                      </div>
+                    </div>
+                    <div class="row form-row m-l-20 m-r-20 xs-m-l-10 xs-m-r-10">
+                      <div class="col-md-6 col-sm-6">
+                        <label>Work Phone</label>
+                        <input ng-model="page.work_phone" name="work_phone" required ng-pattern="/^[0-9]+$/" ng-minlength="10" ng-maxlength="20"  type="text"  class="form-control" placeholder="Work Phone"/>
+                        <span  class="error" ng-show="signup_form.work_phone.$dirty && signup_form.work_phone.$invalid">
+                        <span class="error" ng-show="signup_form.work_phone.$error.required">
+                              Your work phone is required.
+                        </span>
+                        <span class="error" ng-show="signup_form.work_phone.$error.pattern">
+                              That is not a valid phone number. Please input a valid phone number.
+                        </span>
+                      </span></br>
+                      </div>
+                      <div class="col-md-6 col-sm-6">
+                        <label>Mobile</label>
+                        <input ng-model="page.mobile" name="mobile" required ng-pattern="/^[0-9]+$/" ng-minlength="10" ng-maxlength="20" type="text"  class="form-control" placeholder="Mobile"/>
+                        <span  class="error" ng-show="signup_form.mobile.$dirty && signup_form.mobile.$invalid">
+                        <span class="error" ng-show="signup_form.mobile.$error.required">
+                              Your mobile is required.
+                        </span>
+                        <span class="error" ng-show="signup_form.mobile.$error.pattern">
+                              That is not a valid mobile number. Please input a valid mobile number.
+                        </span>
+                      </span><br/>
+                      </div>
+                    </div> 
+
+                    <div class="row form-row m-l-20 m-r-20 xs-m-l-10 xs-m-r-10">
+                      <div class="col-md-12 ">
+                        <label>Username</label>
+                        <input ng-model="user.username" name="username" required  type="text"  class="form-control" placeholder="Username"/>
+                        <span  class="error" ng-show="signup_form.username.$dirty && signup_form.username.$invalid">
+                        <span class="error" ng-show="signup_form.username.$error.required">
+                              Your username is required.
+                        </span>
+                      </span><br/>
+                      </div>
+                    </div>  
+                    <div class="row form-row m-l-20 m-r-20 xs-m-l-10 xs-m-r-10">
+                      <div class="col-md-12 ">
+                        <label>Password</label>
+                        <input ng-model="user.password" name="password" required type="password"  class="form-control" placeholder="Password"/>
+                        <span  class="error" ng-show="signup_form.password.$dirty && signup_form.password.$invalid">
+                        <span class="error" ng-show="signup_form.password.$error.required">
+                              Your password is required.
+                        </span>
+                      </span><br/>
+                      </div>
+                    </div>
+                    <br/>
+                    <!---->
+
+                    
+                    <div class="row form-row m-l-20 m-r-20 xs-m-l-10 xs-m-r-10">
+                      <div class="col-md-12 ">
+                      <div class="checkbox check-default">
+                        <input id="terms" ng-model="terms" type="checkbox"  >
+                        <label for="terms"><a  href="" data-toggle="modal" data-target="#myModal" >Agree to terms and conditions</a></label>
+                      </div>
+                    </div>
+                    </div>
+                   <div style="text-align:center;margin-top:20px">
+                      <button  class="btn  btn-success" type="submit" ng-disabled="!terms||signup_form.$invalid"><i ng-show="loading" class="fa fa-spinner fa-spin"></i> Signup</button>
+                    </div>       
+      </form>
+      <form ng-submit="selectYourPlan()" name="select_plan_form"  ng-show="selectPlan&&!registered_successfully" ng-init="user={};page={};">
+
+        <div class="row form-row m-l-20 m-r-20 xs-m-l-10 xs-m-r-10">
+          <div class="alert alert-danger">Your Account created successfully but still inactive, Please select your plan to proceed!</div>
+                      <div class="col-md-6 " >
+                       
+                        <div class="col-md-12 "  >
+                          <div ng-repeat="plan in plans">
+                            
+                              <div class="radio radio-success" >
+                                <input id="{{plan.name}}" name="userplan" ng-init="plan.selected='Monthly';plan.selected_price=plan.price" required type="radio" ng-model="user.plan" value="{{plan}}">
+                                <label for="{{plan.name}}">{{plan.name}} {{plan.price}}{{plan.currency}}</label>
+                              </div>
+                            
+                             
+                              <div style="clear:both"><!--dd--></div>
+                              </div>
+                        </div>
+                      </div>
+
+                      <div class="col-md-6 " ng-init="user.card={}">
+                          <div class="col-md-12 col-sm-12">
+                            <input ng-model="user.card.number" name="number"  type="text"  class="form-control" placeholder="Card Number" required ng-pattern="/^[0-9]+$/" ng-minlength="15" ng-maxlength="19"/>
+                            <span  class="error" ng-show="select_plan_form.number.$dirty && select_plan_form.number.$invalid">
+                              <span class="error" ng-show="select_plan_form.number.$error.required">
+                                    Card Number is required.
+                              </span>
+                              <span class="error" ng-show="select_plan_form.number.$error.pattern">
+                                    Card Number is not valid.
+                              </span>
+                            </span><br/>
+                          </div>
+                          <div class="col-md-6 col-sm-6">
+                            <input ng-model="user.card.cvc" type="text"  name="cvc"  class="form-control" placeholder="CVC" required ng-pattern="/^[0-9]+$/" ng-minlength="3" ng-maxlength="4" />
+                            <span  class="error" ng-show="select_plan_form.cvc.$dirty && select_plan_form.cvc.$invalid">
+                              <span class="error" ng-show="select_plan_form.cvc.$error.required">
+                                    Card CVC is required.
+                              </span>
+                              <span class="error" ng-show="select_plan_form.cvc.$error.pattern">
+                                    Card CVC is not valid.
+                              </span>
+                            </span><br/>
+                          </div>
+                          <div class="col-md-6 col-sm-6">
+                            <input ng-model="user.card.expire_date" name="expire_date"  required ng-pattern="/^[0-9]+\/[0-9]+$/" ng-minlength="7" ng-maxlength="7" type="text"  class="form-control" placeholder="MM/YYYY"
+                            />
+                            <span  class="error" ng-show="select_plan_form.expire_date.$dirty && select_plan_form.expire_date.$invalid">
+                              <span class="error" ng-show="select_plan_form.expire_date.$error.required">
+                                    Card expire date is required.
+                              </span>
+                              <span class="error" ng-show="select_plan_form.expire_date.$error.pattern">
+                                    Card expire date is not valid.
+                              </span>
+                            </span><br/>
+                          </div>
+                      </div>
+
+                    </div>
+                    <div style="text-align:center;margin-top:20px">
+<button  class="btn  btn-success" type="submit" ng-disabled="select_plan_form.$invalid"><i ng-show="loading" class="fa fa-spinner fa-spin"></i> Subscribe</button>
+</div>  
+      </form>
+      
+    </div>   
+      </div>   
+  </div>
+  <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="myModalLabel">Terms and Conditions</h4>
+      </div>
+      <div class="modal-body">
+      <div class="terms_holder">
+               <ol>
+<li><b>Listing and Profile Terms</b>
+<ol type="a">
+<li >If you require assistance uploading information to your business profile on Event Agent, or if you require assistance with completing your business profile on Event Agent please allow 10 working days for this to take effect.</li>
+<li >Challenger Events take no responsibility for any errors or incorrect information resulting from a Challenger Events staff member uploading your information to Event Agent. It is your responsibility as the business owner or representative to ensure your listing information is accurate.</li>
+<li >It is your responsibility to contact Challenger Events if you see any errors in your listing profile. It may take up to 10 working days to amend any such errors brought to our attention.</li>
+<li >The Free Trial Period is valid until August 7th 2014 at which time all payments for an ongoing subscription are due, failure to pay by this date may result in your business being removed from Event Agent until payment has been finalised.</li>
+<li >Challenger Events reserves the right to remove any business listing from Event Agent at any time throughout the free trial or thereafter, without notice.</li>
+<li >Challenger Events reserve the right to decline any listing for any reason.</li>
+<li>Challenger Events reserve the right to edit any listing at any time. If any editing to your listing is required you will be notified first in writing.</li>
+<li >The post free trial subscription discount (Total fee $264) for an annual Premium Listing is only available to businesses who take part and provide their credit card details to Challenger Events during the free trial period between 1 June 2014 to 7 August 2014. No credit card will be charged until the Free Trial has finished on 7 August 2014.</li>
+<li >Challenger Events reserves the right to refuse any individual piece of material whether it is an image, URL, description content or similar.</li>
+<li >All registered businesses must comply with all relevant laws and ensure that no information breaches the intellectual property or rights of anyone.</li>
+<li >No information displayed can be misleading, defamatory or fraudulent in any way.</li>
+<li >Sexually explicit material of any kind is strictly prohibited on Event Agent. </li>
+</ol>
+</li>
+
+
+<li><b>Cancellations</b>
+<ol type="a">
+<li>All cancellations must be submitted to Challenger Events in writing.</li>
+<li>A supplier can terminate their subscription at any time. If a subscription is cancelled throughout the year and the annual fee has been paid, then no reimbursement will be provided for the additional time.</li>
+</ol>
+</li>
+<li><b>Liability</b>
+<ol type="a">
+<li>Challenger Events expressly excludes all liability for special, indirect or consequential loss or damage, including without limitation, loss of profits, loss of revenue, loss of income, loss of use, loss of business opportunity, loss of production, loss of anticipated savings, pure economic loss, loss of or damage to reputation or goodwill, or loss or damage associated with the interruption of the Supplier's business, howsoever caused.</li>
+<li>Challenger Events makes no representation or warranty in relation to the number of visitors to the mobile-app our website except for those representations made expressly in writing by Challenger Events to the Supplier in relation to actual prior mobile-app or website visits. Challenger Events makes no warranty or representation in relation to future visitor numbers to the Mobile-app and Website and any projections provided by Challenger Events are estimates only. Challenger Events does not warrant or represent that:
+<ol type="I">
+<li>the Mobile-app and Website will be accessible at all times,</li>
+<li>the Mobile-app and Website is free from viruses; or</li>
+<li>any information (including hyperlinks) contained on the Mobile-app and Website is accurate or suitable.</li>
+</ol>
+</li>
+</ol>
+</li>
+<li><b>Indemnity</b>
+<ol type="a">
+<li>The Supplier/Service provider releases, indemnifies and will keep indemnified Challenger Events, its employees, servants and agents against all actions, claims and demands (including the cost of defending or settling any actions, claims and demands) which may be instituted against Challenger Events arising out of:
+<ol type="I">
+<li>a breach of these Terms and Conditions by the Supplier;</li>
+<li>any wilful, unlawful or negligent act or omission of the Supplier;</li>
+<li>the publication by Challenger Events or any other person of any material supplied by the Supplier; and</li>
+<li>breach by the Supplier of any laws or legal obligations, including the Competition and Consumer Act 2010, any state-based Fair Trading legislation and any equivalent legislation in New Zealand.</li>
+</ol>
+</li>
+</ol>
+</li>
+<li><b>Consumer Reviews</b>
+
+<p>By January 2015 Challenger Events will maintain a review system on the Mobile-app and Website that allows consumers who use the Mobile-app and Website to rate and/or review Suppliers' online stores, products, goods and services and customer service.</p>
+<ol type="a">
+<li>The Supplier agrees that from January 2015:</li>
+<li>Challenger Events will at all times maintain editorial control over the reviews posted on the Mobile-app and Website in respect of Supplier;</li>
+<li>the Supplier will not direct Challenger Events to delete or amend any review about a Supplier or a Supplier's goods or services;</li>
+<li>the Supplier will not post its own reviews about the Supplier's own goods or services on the Mobile-app and Website; and</li>
+<li>Challenger Events is not responsible or liable to the Supplier or any third party for any loss or damage caused by such reviews.</li>
+</ol>
+</li>
+<li><b>General Terms</b>
+<ol type="a">
+<li>These Terms and Conditions are governed by and construed in accordance with the laws of Victoria, Australia and the parties irrevocably submit to the courts of or in that State (including the Federal Courts) and the courts that hear appeals from those courts.</li>
+<li>If any provision of these Terms and Conditions is found to be unenforceable for any reason, then that provision shall be deemed deleted from these Terms and Conditions and all other provisions shall remain in full force and effect.</li>
+<li>The Supplier may not transfer or assign these Terms and Conditions without the prior written consent of Challenger Events, which consent may be withheld at the absolute discretion of Challenger Events and if granted, may be granted on such terms and conditions as Challenger Events deems fit.</li>
+<li>Any notice required to be given under these Terms and Conditions must be in writing and given by post, facsimile, email or hand to Challenger Events or the Supplier at the contact details notified by one party to the other.</li>
+<li>No waiver by Challenger Events of any breach of these Terms and Conditions operates as a waiver of any other breach, and the doing and/or omission of any act, matter or thing whatsoever by Challenger Events, its employees or agents (which but for this clause ought or might amount to a waiver of Challenger Events' rights in respect of any such breach or default) does not operate as a waiver in any way of Challenger Events’ rights and powers in respect of such breach or default.</li>
+
+<li>Neither party is liable for any delay or failure to perform its obligations (other than obligations to pay money) if such delay or failure is due to circumstances beyond the reasonable control of the parties which results in a party being unable to observe or perform on time an obligation under these Terms and Conditions, including, without limitation, acts of God, acts of government, war or other hostility, terrorism, national or international disaster, fire, explosion, power failure, equipment failure or strike or lockout.</li>
+<li>These Terms and Conditions and any warranties implied by law which are not capable of being excluded or modified embody the whole agreement between the parties.</li>
+</ol>
+</li>
+</ol>
+
+              </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+<!-- END CONTAINER -->
+<!-- BEGIN CORE JS FRAMEWORK-->
+<script type="text/javascript" src="https://js.stripe.com/v2/"></script>
+<script src="js/angular.js" type="text/javascript"></script>
+<script src="js/angular-resource.js" type="text/javascript"></script>
+<script src="js/kinvey.js" type="text/javascript"></script>
+<script src="js/app.js" type="text/javascript"></script>
+<script src="plugins/jquery-1.8.3.min.js" type="text/javascript"></script>
+<script src="plugins/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
+<script src="plugins/pace/pace.min.js" type="text/javascript"></script>
+<script src="plugins/jquery-validation/js/jquery.validate.min.js" type="text/javascript"></script>
+<script src="plugins/jquery-lazyload/jquery.lazyload.min.js" type="text/javascript"></script>
+<script src="js/login_v2.js" type="text/javascript"></script>
+<!-- BEGIN CORE TEMPLATE JS -->
+<!-- END CORE TEMPLATE JS -->
+</body>
+
+
+
+</html>

@@ -1,0 +1,78 @@
+<div ng-controller="logo" ng-show="current_user.plan.logo">
+
+	<ul class="breadcrumb">
+        <li>
+            <p>YOU ARE HERE</p>
+        </li> 
+        <li><a href="#/logo" class="active">logo</a>
+        </li>
+    </ul>
+	<div class="page-title">	
+		<a href="" ng-click="goBack();"><i class="icon-custom-left"></i></a>
+        <h3>Dashboard</h3>	
+    </div>
+    <div class="row">
+    	
+	    <div class="col-md-12">
+	        <div class="grid simple ">
+
+	            <div class="grid-body no-border">
+	            	<br/>
+	            	
+	            	<h3>Upload your logo</h3>
+	            	<br/>
+	            	<div ng-show="dump.message" class="alert {{dump.type}}">
+				        <button class="close" ng-click="dump={}"></button>
+				        {{dump.message}}
+				      </div>
+				      <div class="crop_widget" ng-show="cropMode" >
+				      	<span class="badge badge-important"><i class="delete_image fa fa-times" ng-click="cropMode=false;"></i></span>
+				      		<div class="crop_header"><h2>Please crop your image</h2></div>
+					     	 <div class="cropModal" >
+								<div class="crop_image_holder">
+									
+									
+								</div>
+								<div class="canvas-preview"></div>
+							</div>
+							<div class="crop_footer"><a href="" ng-click="upload()" class="btn btn-primary">Crop & Upload</a></div>
+						</div>
+				    <form name="logo_form" class="uploadform" action="" method="post" ng-submit="save_page();">
+	                 	<div crop="true" dropzone-hover-class="dropzonehover" class="dropzone" file-dropzone="[image/png, image/jpeg, image/gif]" start="start($file);" complete="upload();" file="page.logo" file-name="imageFileName" data-max-file-size="0.1">
+ 							Or select logo to upload
+ 							<div class="file_input_holder" ng-transclude>
+									<input type="file" class="file_input_holder"/>
+							</div>
+						</div>
+						<div class="loading-image" ng-show="loading_image" ><i class="fa fa-spinner fa-spin"></i> Uploading your image</div>
+						<div ng-show="page.logo" class="drop-image-container">
+							<span class="badge badge-important"><i class="delete_image fa fa-times" ng-click="page.logo='';"></i></span>
+							
+						  <img ng-src={{page.logo}} />
+						</div> 
+						<div class="label label-inverse">Please make sure that your logo is 150x150 pixels in PNG,JPG or GIF format and has a filesize below 100kb.</div>
+						<br/>
+						<!-- <div style="text-align:center;margin-top:20px">
+							<input  type="submit" value="Save" class="btn  btn-success">
+						</div> -->
+	        		</form>
+	        </div>
+	    </div>
+	</div>
+</div>
+</div>
+<div ng-controller="logo" ng-show="!current_user.plan.logo">
+	    <div class="row">
+		    <div class="col-md-12">
+		        <div class="grid simple ">
+		            <div class="grid-body no-border">
+		            	<br/>
+		            	<br/>
+		            	<!-- <div class="alert alert-error">
+							You don't have permission to view this page {{current_user.username}}
+						</div> -->
+		        	</div>
+		    	</div>
+			</div>
+		</div>
+</div>

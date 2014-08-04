@@ -1,0 +1,63 @@
+<div ng-controller="manage_plan" ng-show="!current_user.is_admin">
+
+	<ul class="breadcrumb">
+        <li>
+            <p>YOU ARE HERE</p>
+        </li> 
+        <li><a href="#/manage-plan" class="active">Manage Plan</a>
+        </li>
+    </ul>
+	<div class="page-title">	
+		<a href="" ng-click="goBack();"><i class="icon-custom-left"></i></a>
+        <h3>Dashboard</h3>	
+    </div>
+    <div class="row">
+    	
+	    <div class="col-md-12">
+	        <div class="grid simple ">
+
+	            <div class="grid-body no-border">
+	            	<br/>
+	            	
+	            	<h3>Your current plan  </h3>
+	            	<br/>
+	            	<div ng-show="dump.message" class="alert {{dump.type}}">
+				        <button class="close" ng-click="dump={}"></button>
+				        {{dump.message}}
+				    </div>
+				    
+				    <table class="table no-more-tables">
+	                        <thead>
+	                            <tr>
+	                                <th style="width:50%">Name</th>
+	                                <th style="width:30%">Price</th>
+	                                <th style="width:30%">Actions</th>
+	                            </tr>
+	                        </thead>
+	                        <tbody  style="border:none">
+	                        	
+	                        	<tr>
+		                            <td class="v-align-middle">{{current_user.plan.name}}</td>
+		                            <td class="v-align-middle">{{current_user.plan.price|currency}} {{current_user.plan.currency}}</td>
+		                            
+		                            
+		                          
+		                            <td class="v-align-middle">
+		                            	<span class="btn-group">
+		                            	<a ng-href="#" class="btn btn-info"><i class="fa fa-edit"></i> Upgrade</a>
+		                            	
+		                            	</span>
+		                            </td>
+		                            
+		                            
+	                            </tr>
+	                            
+	                            
+	                        </tbody>
+	                    </table>
+				</div>
+	        </div>
+	    </div>
+	</div>
+</div>
+

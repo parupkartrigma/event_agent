@@ -1,0 +1,39 @@
+[03-Jun-2014 18:07:56 UTC] PHP Fatal error:  Uncaught exception 'Exception' with message 'Stripe needs the Multibyte String PHP extension.' in /home/break/public_html/event/payments/Stripe.php:13
+Stack trace:
+#0 /home/break/public_html/event/webhook.php(2): include()
+#1 {main}
+  thrown in /home/break/public_html/event/payments/Stripe.php on line 13
+[19-Jun-2014 08:52:20 UTC] PHP Warning:  explode() expects at least 2 parameters, 1 given in /home/break/public_html/event/crop_images.php on line 11
+[25-Jun-2014 05:34:26 UTC] PHP Fatal error:  Allowed memory size of 33554432 bytes exhausted (tried to allocate 16715685 bytes) in /home/break/public_html/event/crop_images.php on line 28
+[04-Jul-2014 06:02:40 UTC] PHP Warning:  imagecreatefromstring(): Data is not in a recognized format in /home/break/public_html/event/crop_images.php on line 28
+[04-Jul-2014 06:02:40 UTC] PHP Warning:  imagecopyresampled() expects parameter 2 to be resource, boolean given in /home/break/public_html/event/crop_images.php on line 31
+[04-Jul-2014 06:25:54 UTC] PHP Warning:  imagecreatefromstring(): Data is not in a recognized format in /home/break/public_html/event/crop_images.php on line 28
+[04-Jul-2014 06:25:54 UTC] PHP Warning:  imagecopyresampled() expects parameter 2 to be resource, boolean given in /home/break/public_html/event/crop_images.php on line 31
+[04-Jul-2014 06:26:27 UTC] PHP Warning:  imagecreatefromstring(): Data is not in a recognized format in /home/break/public_html/event/crop_images.php on line 28
+[04-Jul-2014 06:26:27 UTC] PHP Warning:  imagecopyresampled() expects parameter 2 to be resource, boolean given in /home/break/public_html/event/crop_images.php on line 31
+[04-Jul-2014 06:27:14 UTC] PHP Warning:  imagecreatefromstring(): Data is not in a recognized format in /home/break/public_html/event/crop_images.php on line 28
+[04-Jul-2014 06:27:14 UTC] PHP Warning:  imagecopyresampled() expects parameter 2 to be resource, boolean given in /home/break/public_html/event/crop_images.php on line 31
+[04-Jul-2014 06:27:50 UTC] PHP Warning:  imagecreatefromstring(): Data is not in a recognized format in /home/break/public_html/event/crop_images.php on line 28
+[04-Jul-2014 06:27:50 UTC] PHP Warning:  imagecopyresampled() expects parameter 2 to be resource, boolean given in /home/break/public_html/event/crop_images.php on line 31
+[04-Jul-2014 06:28:24 UTC] PHP Warning:  imagecreatefromstring(): Data is not in a recognized format in /home/break/public_html/event/crop_images.php on line 28
+[04-Jul-2014 06:28:24 UTC] PHP Warning:  imagecopyresampled() expects parameter 2 to be resource, boolean given in /home/break/public_html/event/crop_images.php on line 31
+[04-Jul-2014 07:08:53 UTC] PHP Warning:  imagecreatefromstring(): Data is not in a recognized format in /home/break/public_html/event/crop_images.php on line 28
+[04-Jul-2014 07:08:53 UTC] PHP Warning:  imagecopyresampled() expects parameter 2 to be resource, boolean given in /home/break/public_html/event/crop_images.php on line 31
+[04-Jul-2014 07:10:05 UTC] PHP Warning:  imagecreatefromstring(): Data is not in a recognized format in /home/break/public_html/event/crop_images.php on line 28
+[04-Jul-2014 07:10:05 UTC] PHP Warning:  imagecopyresampled() expects parameter 2 to be resource, boolean given in /home/break/public_html/event/crop_images.php on line 31
+[04-Jul-2014 07:15:34 UTC] PHP Warning:  imagecreatefromstring(): Data is not in a recognized format in /home/break/public_html/event/crop_images.php on line 28
+[04-Jul-2014 07:15:34 UTC] PHP Warning:  imagecopyresampled() expects parameter 2 to be resource, boolean given in /home/break/public_html/event/crop_images.php on line 31
+[04-Jul-2014 10:55:34 UTC] PHP Warning:  imagecreatefromstring(): Data is not in a recognized format in /home/break/public_html/event/crop_images.php on line 28
+[04-Jul-2014 10:55:34 UTC] PHP Warning:  imagecopyresampled() expects parameter 2 to be resource, boolean given in /home/break/public_html/event/crop_images.php on line 31
+[04-Jul-2014 10:56:56 UTC] PHP Warning:  imagecreatefromstring(): Data is not in a recognized format in /home/break/public_html/event/crop_images.php on line 28
+[04-Jul-2014 10:56:56 UTC] PHP Warning:  imagecopyresampled() expects parameter 2 to be resource, boolean given in /home/break/public_html/event/crop_images.php on line 31
+[04-Jul-2014 11:01:42 UTC] PHP Warning:  imagecreatefromstring(): Data is not in a recognized format in /home/break/public_html/event/crop_images.php on line 28
+[04-Jul-2014 11:01:42 UTC] PHP Warning:  imagecopyresampled() expects parameter 2 to be resource, boolean given in /home/break/public_html/event/crop_images.php on line 31
+[04-Jul-2014 11:08:11 UTC] PHP Warning:  imagecreatefromstring(): Data is not in a recognized format in /home/break/public_html/event/crop_images.php on line 28
+[04-Jul-2014 11:08:11 UTC] PHP Warning:  imagecopyresampled() expects parameter 2 to be resource, boolean given in /home/break/public_html/event/crop_images.php on line 31
+[04-Jul-2014 11:49:23 UTC] PHP Warning:  imagecreatefromstring(): Data is not in a recognized format in /home/break/public_html/event/crop_images.php on line 28
+[04-Jul-2014 11:49:23 UTC] PHP Warning:  imagecopyresampled() expects parameter 2 to be resource, boolean given in /home/break/public_html/event/crop_images.php on line 31
+[04-Jul-2014 11:54:29 UTC] PHP Warning:  imagecreatefromstring(): Data is not in a recognized format in /home/break/public_html/event/crop_images.php on line 28
+[04-Jul-2014 11:54:29 UTC] PHP Warning:  imagecopyresampled() expects parameter 2 to be resource, boolean given in /home/break/public_html/event/crop_images.php on line 31
+[04-Jul-2014 11:57:17 UTC] PHP Warning:  imagecreatefromstring(): Data is not in a recognized format in /home/break/public_html/event/crop_images.php on line 28
+[04-Jul-2014 11:57:17 UTC] PHP Warning:  imagecopyresampled() expects parameter 2 to be resource, boolean given in /home/break/public_html/event/crop_images.php on line 31

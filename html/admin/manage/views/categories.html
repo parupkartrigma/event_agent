@@ -1,0 +1,161 @@
+<div ng-controller="categories"  ng-show="current_user.is_admin">
+
+	<ul class="breadcrumb">
+        <li>
+            <p>YOU ARE HERE</p>
+        </li> 
+        <li><a href="#" class="active">Categories Management</a>
+        </li>
+    </ul>
+	<div class="page-title">	
+		<a href="" ng-click="goBack();"><i class="icon-custom-left"></i></a>
+        <h3>Categories - <span class="semi-bold">Management</span></h3>	
+    </div>
+    <div class="row">
+    	
+	    <div class="col-md-12">
+	        <div class="grid simple ">
+
+	            <div class="grid-body no-border">
+	            	<br/>
+	            	
+	            	<h3>Create / Remove <span class="semi-bold">Categories</span></h3>
+	            	<br/>
+	            	<div ng-show="dump.message" class="alert {{dump.type}}">
+				        <button class="close" ng-click="dump={}"></button>
+				        {{dump.message}}
+				      </div>
+				    
+	                  <div class="row form-row ">
+	                  	<div class="col-md-6 col-sm-6">
+	                  		<div class="notification-messages info">
+	                    		<span class="semi-bold">Add/Edit Category</span>
+	                    		<form name="category_form" ng-submit="save_category()">
+	                    			<input ng-model="selected_category.name" type="text"  class="form-control" placeholder="Category"/>
+	                    			<select class="form-control" multiple="true" ng-model="selected_category.type">
+	                    				<option value="">None</option>
+                    					<option ng-repeat="type in types" value="{{type.name}}">{{type.name}}</option>
+	                    			</select>
+	                    			<div image="icon" variable="selected_category" file-input="file" class="file_input" ></div>
+	                    			<div class="image_list_holder" >
+	                    				<img ng-class="{'active_image':selected_category.icon==icon.name}" ng-repeat="icon in icons" ng-src="{{icon.name}}"  ng-click="selected_category.icon = icon.name" />
+	                    			</div>
+	                    			<div style="clear:both"></div>
+	                    			<div style="text-align:center;margin-top:20px"><input ng-disabled="category_form.$invalid"  type="submit" value="Save" class="btn  btn-success"></div>  
+	                    		</form>
+							</div>
+							<div class="notification-messages">
+	                  		<div class="label">Categories</div>
+	                        <table class="table no-more-tables">
+	                        <thead>
+	                            <tr>
+	                            	<th style="width:70%">Name</th>
+	                            	
+	                                <th style="width:30%">Edit</th>
+	                            </tr>
+	                        </thead>
+	                        <tbody  ng-repeat="category in categories" style="border:none">
+	                        	<tr > 
+	                        		<td class="v-align-middle"><b>Category</b><br/>{{category.name}}<br/>
+	                        			<b>Event Types</b><br/>
+	                            		{{category.type}}
+				
+	                        		</td>
+	                        		
+		                           <td class="v-align-middle">
+		                            	
+		                            	<div><a ng-click="edit_category(category)" class="btn btn-info"><i class="fa fa-edit"></i></a></div>
+		                            	<div>
+		                            	<span ng-click="confirm_delete=true" class="btn btn-danger"><i class="fa fa-times"></i></span></div>
+		                            	
+		                            </td>
+	                            </tr>
+	                             <tr ng-show="confirm_delete">
+	                            	<td colspan="2">
+	                            		<div class="alert alert-error">
+						                  <button class="close" ng-click="confirm_delete=false;"></button>
+						                  Please confirm delete process.
+						                  <button ng-click="delete_category($index);confirm_delete=false;" class="btn btn-danger btn-sm btn-small pull-right" type="button">Confirm</button>
+						                </div>
+	                            	</td>
+	                            </tr>
+	                            
+	                          
+	                        </tbody>
+	                    </table>
+	                </div>
+	                      </div>
+	                      <div class="col-md-6 col-sm-6">
+	                      	<div class="notification-messages info">
+	                    		<span class="semi-bold">Add/Edit Event Type</span>
+	                    		<form name="type_form" ng-submit="save_type()">
+	                    			<input ng-model="selected_type.name" type="text"  class="form-control" placeholder="Type"/>
+	                    			<!-- <input type="file" ng-model="selected_type.image" > -->
+	                    			<div image="image" variable="selected_type" file-input="file" class="file_input" ></div>
+	                    				<div class="image_list row" ng-show="selected_type.image" align="center">
+											<div class="image_item" >
+												<span class="badge badge-important"><i class="delete_image fa fa-times" ng-click="selected_type.image='';"></i></span>
+												<img class="img-thumbnail" src="{{selected_type.image}}" />
+												
+											</div>
+											<div  style="clear:both"><!--sdf--></div>
+										</div>	
+	                    			<div style="text-align:center;margin-top:20px"><input ng-disabled="type_form.$invalid"  type="submit" value="Save" class="btn  btn-success"></div>  
+	                    		</form>
+							</div>
+							<div class="notification-messages">
+	                      	<div class="label">Event Types</div>
+	                        <table class="table no-more-tables">
+	                        <thead>
+	                            <tr>
+	                            	<th style="width:70%">Name</th>
+	                                <th style="width:30%">Edit</th>
+	                            </tr>
+	                        </thead>
+	                        <tbody  ng-repeat="type in types" style="border:none">
+	                        	<tr > 
+	                        		<td class="v-align-middle">{{type.name}}</td>
+		                           <td class="v-align-middle">
+		                            	<span class="btn-group">
+		                            	<a ng-click="edit_type(type)"class="btn btn-info"><i class="fa fa-edit"></i></a>
+		                            	<span ng-click="confirm_delete=true" class="btn btn-danger"><i class="fa fa-times"></i></span>
+		                            	</span>
+		                            </td>
+	                            </tr>
+	                             <tr ng-show="confirm_delete">
+	                            	<td colspan="3">
+	                            		<div class="alert alert-error">
+						                  <button class="close" ng-click="confirm_delete=false;"></button>
+						                  Please confirm delete process.
+						                  <button ng-click="delete_type($index);confirm_delete=false;" class="btn btn-danger btn-sm btn-small pull-right" type="button">Confirm</button>
+						                </div>
+	                            	</td>
+	                            </tr>
+	                            
+	                        </tbody>
+	                    </table>
+	                </div>
+	                    
+	                      </div>
+	                  </div>
+	                    
+	            </div>
+	        </div>
+	    </div>
+	</div>
+</div>
+<div ng-controller="categories" ng-show="!current_user.is_admin">
+	    <div class="row">
+		    <div class="col-md-12">
+		        <div class="grid simple ">
+		            <div class="grid-body no-border">
+		            	<br/>
+		            	<br/>
+		            	<!-- <div class="alert alert-error">
+							You don't have permission to view this page {{current_user.username}}
+						</div> -->
+		        	</div>
+		    	</div>
+			</div>
+		</div>
+</div>

@@ -1,0 +1,67 @@
+<div ng-controller="testimonials" ng-show="current_user.plan.testimonials">
+
+	<ul class="breadcrumb">
+        <li>
+            <p>YOU ARE HERE</p>
+        </li> 
+        <li><a href="#/testimonails" class="active">Testimonials</a>
+        </li>
+    </ul>
+	<div class="page-title">	
+		<a href="" ng-click="goBack();"><i class="icon-custom-left"></i></a>
+        <h3>Dashboard</h3>	
+    </div>
+    <div class="row">
+    	
+	    <div class="col-md-12">
+	        <div class="grid simple ">
+
+	            <div class="grid-body no-border">
+	            	<br/>
+	            	
+	            	<h3>Testimonials</h3>
+	            	<br/>
+	            	<div ng-show="dump.message" class="alert {{dump.type}}">
+				        <button class="close" ng-click="dump={}"></button>
+				        {{dump.message}}
+				    </div>
+				    <form name="testimonials_form" action="" method="post" ng-submit="save_page();">
+	                  <div class="row form-row ">
+	                  	<div ng-repeat="testimonial in page.testimonials" class="row form-row  m-l-20 m-r-20 xs-m-l-10 xs-m-l-10 xs-m-r-10  margin-bottom">
+	                      <div class="col-md-12">
+	                        <textarea ng-change="limit(testimonial)" ng-model="testimonial.description"  rows="6"  class="form-control" placeholder="Testimonial #{{$index+1}}"></textarea>
+	                        <div class="label label-inverse">{{50-countOf(testimonial.description)}}  words or less for each testimonial. Think Twitter.</div>
+	                        <br/>
+	                      </div>
+	                    </div> 
+	                    
+	                    
+                   
+                    <br/>
+                    <div style="text-align:center;margin-top:20px">
+						<button class="btn  btn-success" type="submit" ng-disabled="company_info_form.$invalid"><i ng-show="loading" class="fa fa-spinner fa-spin"></i> Save</button>
+					</div>
+                    <br/>
+                    
+	                  </div>
+	                   </form> 
+	            </div>
+	        </div>
+	    </div>
+	</div>
+</div>
+<div ng-controller="testimonials" ng-show="!current_user.plan.testimonials">
+	    <div class="row">
+		    <div class="col-md-12">
+		        <div class="grid simple ">
+		            <div class="grid-body no-border">
+		            	<br/>
+		            	<br/>
+		            	<!-- <div class="alert alert-error">
+							You don't have permission to view this page {{current_user.username}}
+						</div> -->
+		        	</div>
+		    	</div>
+			</div>
+		</div>
+</div>

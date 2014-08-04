@@ -1,0 +1,121 @@
+<div ng-controller="dashboard" ng-show="current_user.is_admin">
+	<div class="row  2col">
+      <div class="col-md-4 col-sm-4 spacing-bottom-sm spacing-bottom">
+        <div class="tiles blue added-margin">
+          <div class="tiles-body">
+            <h3>Income</h3>
+            <div class="heading"> <span class="animate-number" data-value="{{sales.revenue}}" data-animation-duration="1200"><span ng-show="!sales.revenue">$0.00</span>{{sales.revenue|currency}}</span> </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4 col-sm-4 spacing-bottom-sm spacing-bottom">
+        <div class="tiles green added-margin">
+          <div class="tiles-body">
+            <h3>Downloads</h3>
+            <div class="heading"> <span class="animate-number" data-value="{{sales.downloads}}" data-animation-duration="1000"><span ng-show="!sales.downloads">0</span>{{sales.downloads}}</span> </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4 col-sm-4 spacing-bottom">
+        <div class="tiles red added-margin">
+          <div class="tiles-body">
+            <h3> Reviews </h3>
+            <div class="heading"> <span class="animate-number" data-value="{{sales.reviews}}" data-animation-duration="1200"><span ng-show="!sales.reviews">0</span>{{sales.reviews}}</span> </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="grid simple">
+	    <div class="grid-body no-border appfigures_chart">
+	    	<br/>
+	    	<h3>Appfigures  <span class="semi-bold">Downloads</span></h3>
+	    	
+	    		<div class="row form-row ">
+                      <div class="col-md-3 col-sm-3" ng-init="date_range='last_7_days'">
+                     
+                      <label class="form-label">Date Range</label>
+                      <select ng-model="date_range" ng-change="modify_date_range()" class="form-control">
+                        <option value="yesterday">Yesterday</option>
+                        <option value="last_7_days">Last 7 Days</option>
+                        <option value="last_30_days">Last 30 Days</option>
+                        <option value="last_60_days">Last 60 Days</option>
+                        <option value="custom">Custom</option>
+                      </select>
+                      </div>
+                      <div class="col-md-3 col-sm-3">
+                      	<label class="form-label">From Date</label>
+                        <input ng-disabled="date_range!=='custom'" ng-model="appfigures_from_date"  required type="date"  class="form-control" placeholder="From Date">
+                      </div>
+                      <div class="col-md-3 col-sm-3">
+                      	<label class="form-label">To Date</label>
+                        <input ng-disabled="date_range!=='custom'" ng-model="appfigures_to_date" required  type="date"  class="form-control" placeholder="To Date">
+                      </div>
+                      
+                </div>   
+                <div class="appfigures_chart_holder">      
+	    		<appfigures-chart class="graph_canvas"  appfigures_from_date="appfigures_from_date" appfigures_to_date="appfigures_to_date" style="height:300px;width:100%"  ></appfigures-chart>
+	    	</div>
+	    </div>
+    </div>
+    <div class="grid simple">
+        <div class="grid-body no-border">
+        	<br/>
+	    	<h3>Flurry  <span class="semi-bold">Stats</span></h3>
+	    	<div class="row form-row flurry_holder">
+                  
+                  <div class="col-md-8 col-sm-8 metric_holder">
+                  	<label class="form-label">Metric</label>
+                  	<div class="btn-toolbar " style="margin-top:0px" ng-init="currentChart='ActiveUsers'">
+	                    <div class="btn-group">
+	                        <button type="button" class="btn" ng-class="{active:currentChart=='ActiveUsers'}" ng-click="currentChart='ActiveUsers';chartlabel='Active Users'" >Active users</button>
+	                        <button type="button" ng-class="{active:currentChart=='Sessions'}" class="btn" ng-click="currentChart='Sessions';chartlabel='Sessions'">Sessions</button>
+	                        <button type="button" ng-class="{active:currentChart=='MedianSessionLength'}" class="btn" ng-click="currentChart='MedianSessionLength';chartlabel='Median use length'" >Median use length</button>
+	                        <button type="button" ng-class="{active:currentChart=='NewUsers'}" class="btn" ng-click="currentChart='NewUsers';chartlabel='New Users'" >New Users</button>
+	                    </div>
+	                </div>
+                  </div>
+                  <div class="col1 col-md-3 col-sm-3">
+                  	<label class="form-label">From Date</label>
+                    <input ng-model="from_date"  required type="date"  class="form-control" placeholder="From Date">
+                  </div>
+                  <div class="col2 col-md-3 col-sm-3">
+                  	<label class="form-label">To Date</label>
+                    <input ng-model="to_date" required  type="date"  class="form-control" placeholder="To Date">
+                  </div>
+            </div>
+            <flurry-chart class="graph_canvas" currentChart="currentChart" from_date="from_date" to_date="to_date" style="height:300px" chartlabel="chartlabel" ></flurry-chart>
+        </div>
+    </div>
+	<!-- <div class="span4">
+        <span>{{sales.revenue|currency}}</span> Income
+   </div>
+   <div class="span4 red">
+        <span>{{sales.downloads}}</span> downloads
+   </div>
+   <div class="span4 orange">
+        <span>{{reviews}}</span> Reviews
+   </div> 
+   <div class="clearfix"></div>
+   <div class="appfigures_chart">
+    <h1>App Ranking</h1>
+       <input type="text" class="input-medium" ng-model="appfigures_from_date" />
+        <input type="text" class="input-medium"  ng-model="appfigures_to_date" />
+        <div class="clearfix"></div>
+        <appfigures-chart class="graph_canvas"  appfigures_from_date="appfigures_from_date" appfigures_to_date="appfigures_to_date" style="height:300px"  ></appfigures-chart>
+   </div> -->
+</div>
+<div ng-controller="dashboard" ng-if="!current_user.is_admin">
+      <div class="row">
+        <div class="col-md-12">
+            <div class="grid simple ">
+                <div class="grid-body no-border">
+                  <br/>
+                  <br/>
+                 <!--  <div class="alert alert-error">
+              You don't have permission to view this page {{current_user.username}}
+            </div> -->
+              </div>
+          </div>
+      </div>
+    </div>
+</div>

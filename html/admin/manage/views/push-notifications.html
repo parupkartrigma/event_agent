@@ -1,0 +1,86 @@
+<div ng-controller="push_notifications" ng-show="current_user.is_admin">
+
+	<ul class="breadcrumb">
+        <li>
+            <p>YOU ARE HERE</p>
+        </li> 
+        <li><a href="#/push-notifications/" class="active">Push Notifications</a>
+        </li>
+    </ul>
+	<div class="page-title">	
+		<a href="" ng-click="goBack();"><i class="icon-custom-left"></i></a>
+        <h3 >Push Notifications</h3>	
+    </div>
+    <div class="row">
+    	
+	    <div class="col-md-12">
+	        <div class="grid simple ">
+
+	            <div class="grid-body no-border">
+	            	<br/>
+	            	
+				      <h3 ><span class="semi-bold">Send a push notification</span></h3>
+				      <div>
+				      	<div ng-show="dump.message" class="alert {{dump.type}}">
+				        <button class="close" ng-click="dump={}"></button>
+				        {{dump.message}}
+				      </div>
+				      	
+	            	<form name="notification_form"  ng-submit="send()" id="frm_register" class="animated fadeIn" >
+                   <div class="row form-row ">
+                      <div class="col-md-12 col-sm-12">
+                      	<label class="form-label">Message Body</label>
+                      	<textarea ng-model="notification.message" rows="10"  required  class="form-control" ></textarea>
+                        
+                      </div>
+                      
+                    </div>
+                    <!-- <div class="row form-row ">
+                      <div class="col-md-12 col-sm-12">
+                      	<label class="form-label">Country (if applicable)</label>
+                        
+                        <select class="form-control" ng-model="notification.country">
+                        	<option value="">Choose Country</option>
+                        	<option value="all">All countries</option>
+                        	<option value="AU">AU</option>
+                        	<option value="NZ">NZ</option>
+                        	<option value="USA">USA</option>
+                        </select>
+                      </div>
+                    </div>
+                    <div class="row form-row ">
+                      <div class="col-md-12 col-sm-12">
+                      	<label class="form-label">Plan</label>
+                         <select class="form-control" ng-model="notification.plan">
+                         	<option value="">Choose Plan</option>
+                        	<option value="all">All plans</option>
+                        	<option ng-repeat="plan in plans" value="{{plan.name}}">{{plan.name}}</option>
+                        </select>
+                      </div>
+                    </div> -->
+
+                   <div style="text-align:center;margin-top:20px"><input ng-disabled="notification_form.$invalid"  type="submit" value="Send" class="btn  btn-success"></div>       
+      			</form>
+	                 
+	                   
+	            </div>
+	        </div>
+	    </div>
+	</div>
+</div>
+</div>
+<div ng-controller="push_notifications" ng-show="!current_user.is_admin">
+      <div class="row">
+        <div class="col-md-12">
+            <div class="grid simple ">
+                <div class="grid-body no-border">
+                  <br/>
+                  <br/>
+                 <!--  <div class="alert alert-error">
+              You don't have permission to view this page {{current_user.username}}
+            </div> -->
+              </div>
+          </div>
+      </div>
+    </div>
+</div>

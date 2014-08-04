@@ -1,0 +1,57 @@
+<div ng-controller="themes_attrs_addCtrl">
+    <div class="clearfix"></div>
+    <div class="alert {{dump.type}}" ng-show="dump.message">{{dump.message}}</div>
+    <div class="grid">
+        <div class="grid-title">
+            <div class="pull-left">
+                <span>Add Attribute</span>
+                <div class="clearfix"></div>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+        <div class="grid-content overflow">
+            <a href="#/themes_attrs/" class="btn btn-primary pull-right">
+                Return to Attributes
+            </a>
+            <div class="clear">
+                <!---->
+            </div>
+            <br/>
+            <div class="span4">
+                <div class="form-horizontal">
+                    <div class="formRow">
+                        <label>Theme</label>
+                        <div class="formRight">
+                            <select class="span4" ng-model="attribute.name" ng-options="theme.name as theme.name for theme in themes">
+                                <option value="">None</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="formRow">
+                        <label>Attribute</label>
+                        <div class="formRight">
+                            <input type="text" ng-model="attribute.attribute" class="span4">
+                        </div>
+                    </div>
+                    
+                   
+                    
+                    <br/>
+                    <br/>
+                    <div class="formRow">
+                        <label></label>
+                        <div class="formRight">
+                            <span class="btn btn-primary" ng-click="add()">
+                                Add Attribute
+                            </span>
+                        </div>
+                    </div>
+                    <br/>
+                    <br/>
+                </div>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+    </div>
+</div>

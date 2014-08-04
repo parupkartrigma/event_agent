@@ -1,0 +1,86 @@
+<div ng-controller="flurryCtrl">
+    <div class="clearfix"></div>
+    <div class="alert {{dump.type}}" ng-show="dump.message">{{dump.message}}</div>
+    <div class="grid">
+        <div class="grid-title">
+            <div class="pull-left">
+                <span>Kinvey Settings</span>
+                <div class="clearfix"></div>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+        <div class="grid-content overflow">
+           
+            <div class="clear" ng-init="init()">
+                <!---->
+            </div>
+            <br/>
+            <div >
+                <div class="form-horizontal">
+                    <div class="formRow">
+                        <label>Master Secret</label>
+                        <div class="formRight">
+                            <input type="text" ng-model="settings.kinvey.secret_key" class="span4">
+                        </div>
+                    </div>
+                    <div class="formRow">
+                        <label>App Key</label>
+                        <div class="formRight">
+                            <input type="text" ng-model="settings.kinvey.app_id" class="span4">
+                        </div>
+                    </div>
+                    
+                    <div class="formRow">
+                        <label>API URL</label>
+                        <div class="formRight">
+                            <input type="text" ng-model="settings.kinvey.api_url" class="span4">
+                        </div>
+                    </div>
+                    <div class="formRow">
+                      
+                        <div class="formRight form-inline">
+                            <label class="inline checkbox">
+                                <input  ng-model="settings.kinvey.active_users" type="checkbox">Active users
+                            </label>
+                            <label class="inline checkbox">
+                                <input  ng-model="settings.kinvey.users_total" type="checkbox">Users
+                            </label>
+                            <label class="inline checkbox">
+                                <input   ng-model="settings.kinvey.file_storage" type="checkbox">File Storage
+                            </label>
+                            <label class="inline checkbox">
+                                <input   ng-model="settings.kinvey.api_calls" type="checkbox">Api Calls
+                            </label>
+                             <label class="inline checkbox">
+                                <input checked="checked"  ng-model="settings.kinvey.data" type="checkbox">Data Storage
+                            </label>
+                        </div>
+                    </div>
+                    <div class="formRow">
+                      <label>Showon Dashboard</label>
+                        <div class="formRight form-inline">
+                            <input type="radio" ng-checked="settings.kinvey.show_in_dashboard" ng-model="settings.kinvey.show_in_dashboard"  >
+                                <label ><span></span>Yes</label>  
+                            <input ng-checked="!settings.kinvey.show_in_dashboard" ng-model="settings.kinvey.show_in_dashboard"  type="radio"  >
+                                <label ><span></span>no</label>
+                           
+                        </div>
+                    </div>
+                    <br/>
+                    <br/>
+                    <div class="formRow">
+                        <label></label>
+                        <div class="formRight">
+                            <span class="btn btn-primary" ng-click="save()">
+                                Save Settings
+                            </span>
+                        </div>
+                    </div>
+                    <br/>
+                    <br/>
+                </div>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+    </div>
+</div>

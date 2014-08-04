@@ -1,0 +1,73 @@
+<div ng-controller="brochure" ng-show="current_user.plan.brochure">
+
+	<ul class="breadcrumb">
+        <li>
+            <p>YOU ARE HERE</p>
+        </li> 
+        <li><a href="#/logo" class="active">Brochure</a>
+        </li>
+    </ul>
+	<div class="page-title">	
+		<a href="" ng-click="goBack();"><i class="icon-custom-left"></i></a>
+        <h3>Dashboard</h3>	
+    </div>
+    <div class="row">
+    	
+	    <div class="col-md-12">
+	        <div class="grid simple ">
+
+	            <div class="grid-body no-border">
+	            	<br/>
+	            	
+	            	<h3>Upload brochure (PDF)</h3>
+	            	<br/>
+	            	<div ng-show="dump.message" class="alert {{dump.type}}">
+				        <button class="close" ng-click="dump={}"></button>
+				        {{dump.message}}
+				      </div>
+				    <form name="brochure_form" class="uploadform" action="" method="post" ng-submit="save_page();">
+				    	<div class="loading-brochure" ng-show="loading_brochure"><i class="fa fa-spinner fa-spin"></i> Uploading your brochure</div>
+				    	
+					     <div class="pdf_box" ng-show="page.brochure.indexOf('http')==0">
+					     	<a href="" class="fa fa-times close" ng-click="page.brochure='';"></a>
+					     	<div><img src="img/pdf.png" alt=""/></div>
+							PDF uploaded
+					     </div>
+					     <div class="pdf_box_download" ng-show="page.brochure.indexOf('http')==0">
+					     	<a ng-href="{{page.brochure}}">Download</a>
+					     </div>
+	                 	<div ng-show="page.brochure.indexOf('http')!=0" dropzone-hover-class="dropzonehover" class="dropzone" file-dropzone="[application/pdf]"  complete="uploaded($data,$file);" start="start($file);" file="page.brochure" file-name="imageFileName" data-max-file-size="10">
+ 							Or select brochure to upload
+ 							<div class="file_input_holder">
+									<input type="file" class="file_input_holder"/>
+							</div>
+							
+						</div>
+						
+						<div ng-show="page.brochure.indexOf('http')!=0" class="label label-inverse">Please make sure your brochure does not
+exceed 10mb and is in PDF format</div>
+						<br/>
+						<!-- <div style="text-align:center;margin-top:20px">
+							<input  type="submit" value="Save" class="btn  btn-success">
+						</div> -->
+	        		</form>
+	        </div>
+	    </div>
+	</div>
+</div>
+</div>
+<div ng-controller="brochure" ng-show="!current_user.plan.brochure">
+	    <div class="row">
+		    <div class="col-md-12">
+		        <div class="grid simple ">
+		            <div class="grid-body no-border">
+		            	<br/>
+		            	<br/>
+		            	<!-- <div class="alert alert-error">
+							You don't have permission to view this page {{current_user.username}}
+						</div> -->
+		        	</div>
+		    	</div>
+			</div>
+		</div>
+</div>
